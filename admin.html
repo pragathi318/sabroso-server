@@ -1,0 +1,518 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Admin Dashboard – Sabroso | Global Cloud Kitchen</title>
+    <meta name="description" content="Sabroso Admin Dashboard. Manage orders, dishes, users, and analytics." />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Playfair+Display:wght@700;800&display=swap"
+        rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+    <link rel="stylesheet" href="admin.css" />
+</head>
+
+<body>
+
+    <!-- SIDEBAR -->
+    <aside class="sidebar" id="sidebar">
+        <div class="sidebar-header">
+            <div class="logo-wrap">
+                <div class="logo-icon"><i class="fas fa-fire"></i></div>
+                <div>
+                    <a href="index.html" class="sidebar-logo">Sabroso</a>
+                    <span class="sidebar-badge">Admin Panel</span>
+                </div>
+            </div>
+        </div>
+
+        <nav class="sidebar-nav">
+            <div class="nav-section-label">Main Menu</div>
+            <a href="#" class="nav-item active" data-page="dashboard" onclick="switchPage('dashboard', this)">
+                <i class="fas fa-grid"></i><span>Dashboard</span>
+            </a>
+            <a href="#" class="nav-item" data-page="dishes" onclick="switchPage('dishes', this)">
+                <i class="fas fa-utensils"></i><span>Manage Dishes</span>
+            </a>
+            <a href="#" class="nav-item" data-page="orders" onclick="switchPage('orders', this)">
+                <i class="fas fa-receipt"></i><span>Orders</span>
+                <div class="nav-badge pulse">12</div>
+            </a>
+            <a href="#" class="nav-item" data-page="users" onclick="switchPage('users', this)">
+                <i class="fas fa-users"></i><span>Users</span>
+            </a>
+
+            <div class="nav-section-label">Insights</div>
+            <a href="#" class="nav-item" data-page="analytics" onclick="switchPage('analytics', this)">
+                <i class="fas fa-chart-line"></i><span>Analytics</span>
+            </a>
+
+            <div class="nav-section-label">Account</div>
+            <a href="index.html" class="nav-item">
+                <i class="fas fa-globe"></i><span>View Site</span>
+            </a>
+            <a href="login.html" class="nav-item logout" onclick="auth.logout(); return false;">
+                <i class="fas fa-right-from-bracket"></i><span>Logout</span>
+            </a>
+        </nav>
+
+        <div class="sidebar-footer">
+            <div class="admin-avatar"><img
+                    src="https://ui-avatars.com/api/?name=Admin+User&background=e63946&color=fff&bold=true&size=80"
+                    alt="Admin" /></div>
+            <div class="admin-info">
+                <div class="admin-name">Admin User</div>
+                <div class="admin-role">Super Admin</div>
+            </div>
+            <button class="sidebar-settings" title="Settings"><i class="fas fa-ellipsis-vertical"></i></button>
+        </div>
+    </aside>
+
+    <!-- MAIN CONTENT -->
+    <main class="main-content" id="mainContent">
+
+        <!-- TOP BAR -->
+        <header class="topbar">
+            <button class="hamburger-btn" id="menuToggle" onclick="toggleSidebar()"><i class="fas fa-bars"></i></button>
+            <div class="topbar-left">
+                <h1 id="pageTitle">Dashboard</h1>
+                <p class="topbar-date" id="topbarDate"></p>
+            </div>
+            <div class="topbar-right">
+                <div class="search-box">
+                    <i class="fas fa-search"></i>
+                    <input type="text" placeholder="Search anything..." id="searchInput" />
+                </div>
+                <button class="topbar-icon" title="Notifications"><i class="fas fa-bell"></i><span
+                        class="notif-dot"></span></button>
+                <button class="topbar-icon" title="Full Screen" onclick="toggleFullScreen()"><i
+                        class="fas fa-expand"></i></button>
+            </div>
+        </header>
+
+        <!-- ===== DASHBOARD PAGE ===== -->
+        <section class="page active" id="page-dashboard">
+
+            <!-- WELCOME BANNER -->
+            <div class="welcome-banner">
+                <div class="welcome-text">
+                    <h2>Welcome back, <span>Admin</span> 👋</h2>
+                    <p>Here's what's happening with your cloud kitchen today.</p>
+                </div>
+                <div class="welcome-date" id="welcomeDate"></div>
+            </div>
+
+            <!-- STAT CARDS -->
+            <div class="stat-cards">
+                <div class="stat-card" style="--accent:#e63946;--accent-bg:rgba(230,57,70,.08)">
+                    <div class="stat-icon"><i class="fas fa-shopping-bag"></i></div>
+                    <div class="stat-body">
+                        <div class="stat-label">Total Orders</div>
+                        <div class="stat-value" id="statOrders">1,284</div>
+                        <div class="stat-trend up"><i class="fas fa-trending-up"></i>
+                            <i class="fas fa-arrow-up"></i> 12.5%
+                            <span>vs last month</span>
+                        </div>
+                    </div>
+                    <div class="stat-sparkline" id="sparkOrders"></div>
+                </div>
+                <div class="stat-card" style="--accent:#3b82f6;--accent-bg:rgba(59,130,246,.08)">
+                    <div class="stat-icon"><i class="fas fa-users"></i></div>
+                    <div class="stat-body">
+                        <div class="stat-label">Total Users</div>
+                        <div class="stat-value" id="statUsers">8,461</div>
+                        <div class="stat-trend up"><i class="fas fa-arrow-up"></i> 8.2%
+                            <span>vs last month</span>
+                        </div>
+                    </div>
+                    <div class="stat-sparkline" id="sparkUsers"></div>
+                </div>
+                <div class="stat-card" style="--accent:#10b981;--accent-bg:rgba(16,185,129,.08)">
+                    <div class="stat-icon"><i class="fas fa-dollar-sign"></i></div>
+                    <div class="stat-body">
+                        <div class="stat-label">Revenue</div>
+                        <div class="stat-value" id="statRevenue">$42,580</div>
+                        <div class="stat-trend up"><i class="fas fa-arrow-up"></i> 18.3%
+                            <span>vs last month</span>
+                        </div>
+                    </div>
+                    <div class="stat-sparkline" id="sparkRevenue"></div>
+                </div>
+                <div class="stat-card" style="--accent:#f59e0b;--accent-bg:rgba(245,158,11,.08)">
+                    <div class="stat-icon"><i class="fas fa-fire"></i></div>
+                    <div class="stat-body">
+                        <div class="stat-label">Popular Dish</div>
+                        <div class="stat-value popular-dish" id="statPopular">Spaghetti Bolognese</div>
+                        <div class="stat-trend neutral"><i class="fas fa-star"></i> 342 orders this month</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- CHARTS ROW -->
+            <div class="charts-row">
+                <div class="chart-card wide">
+                    <div class="chart-header">
+                        <h3><i class="fas fa-chart-area"></i> Revenue Overview</h3>
+                        <div class="chart-filters">
+                            <button class="chart-filter active" onclick="setChartFilter(this, 'week')">Week</button>
+                            <button class="chart-filter" onclick="setChartFilter(this, 'month')">Month</button>
+                            <button class="chart-filter" onclick="setChartFilter(this, 'year')">Year</button>
+                        </div>
+                    </div>
+                    <canvas id="revenueChart" height="260"></canvas>
+                </div>
+                <div class="chart-card">
+                    <div class="chart-header">
+                        <h3><i class="fas fa-chart-pie"></i> Orders by Cuisine</h3>
+                    </div>
+                    <canvas id="cuisineChart" height="220"></canvas>
+                    <div class="cuisine-legend" id="cuisineLegend"></div>
+                </div>
+            </div>
+
+            <!-- QUICK STATS ROW -->
+            <div class="quick-stats">
+                <div class="quick-stat">
+                    <div class="qs-icon" style="background:rgba(230,57,70,.1);color:#e63946"><i
+                            class="fas fa-clock"></i></div>
+                    <div>
+                        <div class="qs-val">28 min</div>
+                        <div class="qs-label">Avg. Delivery</div>
+                    </div>
+                </div>
+                <div class="quick-stat">
+                    <div class="qs-icon" style="background:rgba(16,185,129,.1);color:#10b981"><i
+                            class="fas fa-check-circle"></i></div>
+                    <div>
+                        <div class="qs-val">94.2%</div>
+                        <div class="qs-label">Success Rate</div>
+                    </div>
+                </div>
+                <div class="quick-stat">
+                    <div class="qs-icon" style="background:rgba(59,130,246,.1);color:#3b82f6"><i
+                            class="fas fa-star"></i></div>
+                    <div>
+                        <div class="qs-val">4.8/5</div>
+                        <div class="qs-label">Avg. Rating</div>
+                    </div>
+                </div>
+                <div class="quick-stat">
+                    <div class="qs-icon" style="background:rgba(245,158,11,.1);color:#f59e0b"><i
+                            class="fas fa-redo"></i></div>
+                    <div>
+                        <div class="qs-val">67%</div>
+                        <div class="qs-label">Repeat Orders</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- RECENT ORDERS TABLE -->
+            <div class="table-card">
+                <div class="table-header">
+                    <h3><i class="fas fa-clock"></i> Recent Orders</h3>
+                    <a href="#" class="view-all"
+                        onclick="switchPage('orders', document.querySelector('[data-page=orders]'))">View All <i
+                            class="fas fa-arrow-right"></i></a>
+                </div>
+                <div class="table-wrap">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Order ID</th>
+                                <th>Customer</th>
+                                <th>Dish</th>
+                                <th>Amount</th>
+                                <th>Order Status</th>
+                                <th>Payment</th>
+                                <th>Date</th>
+                            </tr>
+                        </thead>
+                        <tbody id="ordersTableBody"></tbody>
+                    </table>
+                </div>
+            </div>
+
+        </section>
+
+        <!-- ===== DISHES PAGE ===== -->
+        <section class="page" id="page-dishes">
+            <div class="page-top-bar">
+                <div>
+                    <h2 class="page-heading">Manage Dishes</h2>
+                    <p class="page-sub">Add, edit, and manage your global menu offerings.</p>
+                </div>
+                <button class="btn-add" onclick="openDishModal()"><i class="fas fa-plus"></i> Add New Dish</button>
+            </div>
+
+            <!-- DISH FILTERS -->
+            <div class="dish-filters">
+                <button class="dish-filter active" onclick="filterDishes('all', this)">All</button>
+                <button class="dish-filter" onclick="filterDishes('European', this)">European</button>
+                <button class="dish-filter" onclick="filterDishes('Japanese', this)">Japanese</button>
+                <button class="dish-filter" onclick="filterDishes('Korean', this)">Korean</button>
+                <button class="dish-filter" onclick="filterDishes('Mexican', this)">Mexican</button>
+                <button class="dish-filter" onclick="filterDishes('African', this)">African</button>
+            </div>
+
+            <!-- DISHES GRID -->
+            <div class="dishes-manage-grid" id="dishesGrid"></div>
+        </section>
+
+        <!-- ===== ORDERS PAGE ===== -->
+        <section class="page" id="page-orders">
+            <div class="page-top-bar">
+                <div>
+                    <h2 class="page-heading">Order Management</h2>
+                    <p class="page-sub">Track and manage all customer orders.</p>
+                </div>
+                <div class="orders-summary-chips">
+                    <div class="os-chip" style="--c:#10b981"><i class="fas fa-check-circle"></i> <span
+                            id="deliveredCount">0</span> Delivered</div>
+                    <div class="os-chip" style="--c:#f59e0b"><i class="fas fa-fire"></i> <span
+                            id="preparingCount">0</span> Preparing</div>
+                    <div class="os-chip" style="--c:#3b82f6"><i class="fas fa-motorcycle"></i> <span
+                            id="deliveryCount">0</span> In Transit</div>
+                    <div class="os-chip" style="--c:#ef4444"><i class="fas fa-times-circle"></i> <span
+                            id="cancelledCount">0</span> Cancelled</div>
+                </div>
+            </div>
+            <div class="table-card">
+                <div class="table-header">
+                    <h3><i class="fas fa-receipt"></i> All Orders</h3>
+                    <div class="table-actions">
+                        <select id="statusFilter" onchange="filterOrders()">
+                            <option value="all">All Status</option>
+                            <option value="Delivered">Delivered</option>
+                            <option value="Preparing">Preparing</option>
+                            <option value="Out for Delivery">Out for Delivery</option>
+                            <option value="Cancelled">Cancelled</option>
+                        </select>
+                        <button class="btn-export" onclick="showToast('📥 Orders exported!')"><i
+                                class="fas fa-download"></i> Export</button>
+                    </div>
+                </div>
+                <div class="table-wrap">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Order ID</th>
+                                <th>Customer</th>
+                                <th>Dish</th>
+                                <th>Amount</th>
+                                <th>Order Status</th>
+                                <th>Payment</th>
+                                <th>Date</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody id="allOrdersBody"></tbody>
+                    </table>
+                </div>
+            </div>
+        </section>
+
+        <!-- ===== USERS PAGE ===== -->
+        <section class="page" id="page-users">
+            <div class="page-top-bar">
+                <div>
+                    <h2 class="page-heading">User Management</h2>
+                    <p class="page-sub">View and manage registered users.</p>
+                </div>
+                <div class="user-stats-chips">
+                    <div class="os-chip" style="--c:#10b981"><i class="fas fa-user-check"></i> <span>7,842</span>
+                        Active</div>
+                    <div class="os-chip" style="--c:#f59e0b"><i class="fas fa-user-clock"></i> <span>619</span>
+                        Inactive</div>
+                </div>
+            </div>
+            <div class="table-card">
+                <div class="table-header">
+                    <h3><i class="fas fa-users"></i> All Users</h3>
+                    <div class="table-actions">
+                        <select id="userRoleFilter" onchange="filterUsers()">
+                            <option value="all">All Roles</option>
+                            <option value="Customer">Customers</option>
+                            <option value="Premium">Premium</option>
+                            <option value="Admin">Admin</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="table-wrap">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>User</th>
+                                <th>Email</th>
+                                <th>Role</th>
+                                <th>Orders</th>
+                                <th>Total Spent</th>
+                                <th>Joined</th>
+                                <th>Status</th>
+                            </tr>
+                        </thead>
+                        <tbody id="usersTableBody"></tbody>
+                    </table>
+                </div>
+            </div>
+        </section>
+
+        <!-- ===== ANALYTICS PAGE ===== -->
+        <section class="page" id="page-analytics">
+            <div class="page-top-bar">
+                <div>
+                    <h2 class="page-heading">Analytics & Reports</h2>
+                    <p class="page-sub">Detailed insights into your kitchen's performance.</p>
+                </div>
+                <div class="analytics-period">
+                    <select id="analyticsPeriod">
+                        <option>Last 7 Days</option>
+                        <option selected>Last 30 Days</option>
+                        <option>Last 90 Days</option>
+                        <option>This Year</option>
+                    </select>
+                </div>
+            </div>
+
+            <!-- ANALYTICS STAT CARDS -->
+            <div class="analytics-stats">
+                <div class="a-stat">
+                    <div class="a-stat-icon" style="background:rgba(230,57,70,.1);color:#e63946"><i
+                            class="fas fa-shopping-cart"></i></div>
+                    <div class="a-stat-val">$128,450</div>
+                    <div class="a-stat-label">Total Revenue</div>
+                    <div class="a-stat-change up">+24.5%</div>
+                </div>
+                <div class="a-stat">
+                    <div class="a-stat-icon" style="background:rgba(59,130,246,.1);color:#3b82f6"><i
+                            class="fas fa-box"></i></div>
+                    <div class="a-stat-val">3,847</div>
+                    <div class="a-stat-label">Total Orders</div>
+                    <div class="a-stat-change up">+18.2%</div>
+                </div>
+                <div class="a-stat">
+                    <div class="a-stat-icon" style="background:rgba(16,185,129,.1);color:#10b981"><i
+                            class="fas fa-user-plus"></i></div>
+                    <div class="a-stat-val">1,243</div>
+                    <div class="a-stat-label">New Customers</div>
+                    <div class="a-stat-change up">+12.1%</div>
+                </div>
+                <div class="a-stat">
+                    <div class="a-stat-icon" style="background:rgba(245,158,11,.1);color:#f59e0b"><i
+                            class="fas fa-rotate-right"></i></div>
+                    <div class="a-stat-val">2.4%</div>
+                    <div class="a-stat-label">Cancellation Rate</div>
+                    <div class="a-stat-change down">-1.8%</div>
+                </div>
+            </div>
+
+            <!-- ANALYTICS CHARTS -->
+            <div class="charts-row">
+                <div class="chart-card wide">
+                    <div class="chart-header">
+                        <h3><i class="fas fa-chart-bar"></i> Orders vs Revenue</h3>
+                    </div>
+                    <canvas id="analyticsBarChart" height="280"></canvas>
+                </div>
+                <div class="chart-card">
+                    <div class="chart-header">
+                        <h3><i class="fas fa-chart-pie"></i> Payment Methods</h3>
+                    </div>
+                    <canvas id="paymentChart" height="220"></canvas>
+                    <div class="cuisine-legend" id="paymentLegend"></div>
+                </div>
+            </div>
+
+            <!-- TOP DISHES TABLE -->
+            <div class="table-card">
+                <div class="table-header">
+                    <h3><i class="fas fa-trophy"></i> Top Performing Dishes</h3>
+                </div>
+                <div class="table-wrap">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>#</th>
+                                <th>Dish</th>
+                                <th>Cuisine</th>
+                                <th>Orders</th>
+                                <th>Revenue</th>
+                                <th>Rating</th>
+                                <th>Trend</th>
+                            </tr>
+                        </thead>
+                        <tbody id="topDishesBody"></tbody>
+                    </table>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- DISH MODAL -->
+    <div class="modal-overlay" id="dishModal">
+        <div class="modal-card">
+            <div class="modal-header">
+                <h3><i class="fas fa-utensils"></i> <span id="dishModalTitle">Add New Dish</span></h3>
+                <button class="modal-close" onclick="closeDishModal()"><i class="fas fa-times"></i></button>
+            </div>
+            <div class="modal-body">
+                <div class="form-grid">
+                    <div class="form-group full">
+                        <label><i class="fas fa-tag"></i> Dish Name</label>
+                        <input type="text" id="dishName" placeholder="e.g. Spaghetti Bolognese" />
+                    </div>
+                    <div class="form-group">
+                        <label><i class="fas fa-globe"></i> Cuisine</label>
+                        <select id="dishCuisine">
+                            <option>European</option>
+                            <option>Japanese</option>
+                            <option>Korean</option>
+                            <option>Mexican</option>
+                            <option>African</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label><i class="fas fa-dollar-sign"></i> Price ($)</label>
+                        <input type="number" id="dishPrice" placeholder="12.99" step="0.01" />
+                    </div>
+                    <div class="form-group full">
+                        <label><i class="fas fa-align-left"></i> Description</label>
+                        <textarea id="dishDesc" rows="3" placeholder="Describe the dish..."></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label><i class="fas fa-hourglass-half"></i> Prep Time (min)</label>
+                        <input type="number" id="dishPrepTime" placeholder="25" />
+                    </div>
+                    <div class="form-group">
+                        <label><i class="fas fa-fire"></i> Spice Level</label>
+                        <select id="dishSpice">
+                            <option>Mild</option>
+                            <option>Medium</option>
+                            <option>Hot</option>
+                            <option>Extra Hot</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button class="btn-cancel" onclick="closeDishModal()">Cancel</button>
+                <button class="btn-save" onclick="saveDish()"><i class="fas fa-check"></i> Save Dish</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- TOAST -->
+    <div id="toast"><i class="fas fa-check-circle"></i> <span id="toastMsg"></span></div>
+
+    <script src="api-config.js"></script>
+    <script>
+        // Secure page: Only allow admins
+        if (!auth.isAdmin()) {
+            window.location.href = 'login.html';
+        }
+    </script>
+    <script src="admin.js"></script>
+</body>
+
+</html>

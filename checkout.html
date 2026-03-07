@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Checkout – Sabroso | Global Cloud Kitchen</title>
+    <meta name="description"
+        content="Complete your Sabroso order. Enter delivery details, choose payment method, and place your order." />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&family=Playfair+Display:wght@700;800&display=swap"
+        rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+    <link rel="stylesheet" href="checkout.css" />
+</head>
+
+<body>
+
+    <!-- NAVBAR -->
+    <nav id="navbar">
+        <a href="index.html" class="nav-logo">Sabroso</a>
+        <ul class="nav-links">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="menu.html">Menu</a></li>
+            <li><a href="index.html#how">How It Works</a></li>
+            <li><a href="index.html#reviews">Reviews</a></li>
+        </ul>
+        <div class="nav-cta">
+            <a href="login.html" class="btn-outline" style="text-decoration:none">Login</a>
+            <a href="cart.html" class="btn-primary" style="text-decoration:none"><i class="fas fa-shopping-cart"></i>
+                Cart</a>
+        </div>
+        <div class="hamburger"><i class="fas fa-bars"></i></div>
+    </nav>
+
+    <!-- BREADCRUMB -->
+    <div class="breadcrumb-wrap">
+        <div class="breadcrumb">
+            <a href="index.html"><i class="fas fa-home"></i> Home</a>
+            <i class="fas fa-chevron-right"></i>
+            <a href="cart.html">Cart</a>
+            <i class="fas fa-chevron-right"></i>
+            <span>Checkout</span>
+        </div>
+    </div>
+
+    <!-- PROGRESS STEPS -->
+    <div class="progress-wrap">
+        <div class="progress-steps">
+            <div class="step done">
+                <div class="step-circle"><i class="fas fa-check"></i></div><span>Cart</span>
+            </div>
+            <div class="step-line done"></div>
+            <div class="step active">
+                <div class="step-circle">2</div><span>Checkout</span>
+            </div>
+            <div class="step-line"></div>
+            <div class="step">
+                <div class="step-circle">3</div><span>Confirmation</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- CHECKOUT CONTENT -->
+    <section id="checkout-section">
+        <div class="checkout-layout">
+
+            <!-- LEFT: FORMS -->
+            <div class="checkout-forms">
+
+                <!-- DELIVERY INFO -->
+                <div class="form-card" id="deliveryCard">
+                    <div class="form-card-header">
+                        <div class="form-card-icon"><i class="fas fa-map-marker-alt"></i></div>
+                        <div>
+                            <h2>Delivery Information</h2>
+                            <p>Where should we deliver your order?</p>
+                        </div>
+                    </div>
+                    <div class="form-grid">
+                        <div class="form-group full">
+                            <label for="fullName"><i class="fas fa-user"></i> Full Name</label>
+                            <input type="text" id="fullName" placeholder="Enter your full name" required />
+                        </div>
+                        <div class="form-group">
+                            <label for="phone"><i class="fas fa-phone"></i> Phone Number</label>
+                            <input type="tel" id="phone" placeholder="+91 98765 43210" required />
+                        </div>
+                        <div class="form-group">
+                            <label for="email"><i class="fas fa-envelope"></i> Email</label>
+                            <input type="email" id="email" placeholder="you@email.com" />
+                        </div>
+                        <div class="form-group full">
+                            <label for="address"><i class="fas fa-home"></i> Delivery Address</label>
+                            <textarea id="address" rows="3" placeholder="House/Flat No., Street, Landmark"
+                                required></textarea>
+                        </div>
+                        <div class="form-group">
+                            <label for="city"><i class="fas fa-city"></i> City</label>
+                            <input type="text" id="city" placeholder="Enter city" required />
+                        </div>
+                        <div class="form-group">
+                            <label for="pincode"><i class="fas fa-map-pin"></i> Pincode</label>
+                            <input type="text" id="pincode" placeholder="Enter pincode" maxlength="6" required />
+                        </div>
+                    </div>
+                    <div class="form-group full" style="margin-top:.5rem">
+                        <label for="instructions"><i class="fas fa-sticky-note"></i> Delivery Instructions
+                            (optional)</label>
+                        <input type="text" id="instructions" placeholder="E.g. Ring the bell twice, leave at door" />
+                    </div>
+                </div>
+
+                <!-- PAYMENT METHOD -->
+                <div class="form-card" id="paymentCard">
+                    <div class="form-card-header">
+                        <div class="form-card-icon"><i class="fas fa-credit-card"></i></div>
+                        <div>
+                            <h2>Payment Method</h2>
+                            <p>Choose how you'd like to pay</p>
+                        </div>
+                    </div>
+                    <div class="payment-options">
+
+                        <label class="payment-option" id="optCOD">
+                            <input type="radio" name="payment" value="cod" checked onchange="selectPayment('cod')" />
+                            <div class="payment-card">
+                                <div class="payment-icon"><i class="fas fa-money-bill-wave"></i></div>
+                                <div class="payment-info">
+                                    <span class="payment-title">Cash on Delivery</span>
+                                    <span class="payment-sub">Pay when your order arrives</span>
+                                </div>
+                                <div class="payment-check"><i class="fas fa-check-circle"></i></div>
+                            </div>
+                        </label>
+
+                        <label class="payment-option" id="optUPI">
+                            <input type="radio" name="payment" value="upi" onchange="selectPayment('upi')" />
+                            <div class="payment-card">
+                                <div class="payment-icon"><i class="fas fa-mobile-alt"></i></div>
+                                <div class="payment-info">
+                                    <span class="payment-title">UPI Payment</span>
+                                    <span class="payment-sub">Google Pay, PhonePe, Paytm</span>
+                                </div>
+                                <div class="payment-check"><i class="fas fa-check-circle"></i></div>
+                            </div>
+                        </label>
+
+                        <label class="payment-option" id="optCard">
+                            <input type="radio" name="payment" value="card" onchange="selectPayment('card')" />
+                            <div class="payment-card">
+                                <div class="payment-icon"><i class="fas fa-credit-card"></i></div>
+                                <div class="payment-info">
+                                    <span class="payment-title">Credit / Debit Card</span>
+                                    <span class="payment-sub">Visa, Mastercard, RuPay</span>
+                                </div>
+                                <div class="payment-check"><i class="fas fa-check-circle"></i></div>
+                            </div>
+                        </label>
+                    </div>
+
+                    <!-- UPI FIELD -->
+                    <div class="extra-field" id="upiField" style="display:none">
+                        <label for="upiId"><i class="fas fa-at"></i> UPI ID</label>
+                        <input type="text" id="upiId" placeholder="yourname@upi" />
+                    </div>
+
+                    <!-- CARD FIELDS -->
+                    <div class="extra-field" id="cardField" style="display:none">
+                        <div class="form-grid">
+                            <div class="form-group full">
+                                <label for="cardNum"><i class="fas fa-credit-card"></i> Card Number</label>
+                                <input type="text" id="cardNum" placeholder="1234  5678  9012  3456" maxlength="19" />
+                            </div>
+                            <div class="form-group">
+                                <label for="cardExpiry"><i class="fas fa-calendar"></i> Expiry</label>
+                                <input type="text" id="cardExpiry" placeholder="MM/YY" maxlength="5" />
+                            </div>
+                            <div class="form-group">
+                                <label for="cardCvv"><i class="fas fa-lock"></i> CVV</label>
+                                <input type="password" id="cardCvv" placeholder="•••" maxlength="3" />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- RIGHT: ORDER SUMMARY -->
+            <aside class="order-summary">
+                <h3><i class="fas fa-receipt"></i> Order Summary</h3>
+                <div class="summary-items" id="summaryItems"></div>
+                <div class="summary-divider"></div>
+                <div class="summary-rows">
+                    <div class="summary-row"><span>Subtotal</span><span id="subtotal">$0.00</span></div>
+                    <div class="summary-row"><span>Delivery Fee</span><span id="deliveryFee">$0.00</span></div>
+                    <div class="summary-row"><span>Tax (5%)</span><span id="taxAmt">$0.00</span></div>
+                    <div class="summary-divider"></div>
+                    <div class="summary-row total"><span>Total</span><span id="totalAmount">$0.00</span></div>
+                </div>
+                <div class="summary-info">
+                    <div class="info-chip"><i class="fas fa-clock"></i> Estimated delivery: 25–35 min</div>
+                    <div class="info-chip"><i class="fas fa-shield-alt"></i> 100% Secure Payment</div>
+                </div>
+                <button class="btn-place-order" id="placeOrderBtn" onclick="placeOrder()">
+                    <i class="fas fa-check-circle"></i> Place Order — <span id="btnTotal">$0.00</span>
+                </button>
+                <a href="cart.html" class="btn-back-cart"><i class="fas fa-arrow-left"></i> Back to Cart</a>
+            </aside>
+        </div>
+    </section>
+
+    <!-- SUCCESS MODAL -->
+    <div class="modal-overlay" id="successModal">
+        <div class="modal-card success-modal">
+            <div class="success-icon"><i class="fas fa-check"></i></div>
+            <h2>Order Placed Successfully! 🎉</h2>
+            <p>Thank you for ordering with Sabroso. Your delicious food is being prepared and will arrive soon!</p>
+            <div class="order-id">Order #SAB-<span id="orderId"></span></div>
+            <div class="success-meta">
+                <div><i class="fas fa-clock"></i> Est. Delivery: 25-35 min</div>
+                <div><i class="fas fa-map-marker-alt"></i> <span id="successAddr"></span></div>
+            </div>
+            <a href="tracking.html" class="btn-cta"><i class="fas fa-map-marker-alt"></i> Track Order</a>
+            <a href="index.html" class="btn-outline-link"><i class="fas fa-home"></i> Back to Home</a>
+        </div>
+    </div>
+
+    <!-- FOOTER -->
+    <footer id="contact">
+        <div class="footer-grid">
+            <div class="footer-brand">
+                <span class="logo">Sabroso</span>
+                <p>Sabroso – Global Cloud Kitchen connects food lovers with passionate home chefs across the world.
+                    Authentic flavours, delivered with love.</p>
+                <div class="social-icons">
+                    <a class="social-icon" href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                    <a class="social-icon" href="#" aria-label="Twitter"><i class="fab fa-x-twitter"></i></a>
+                    <a class="social-icon" href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                    <a class="social-icon" href="#" aria-label="TikTok"><i class="fab fa-tiktok"></i></a>
+                    <a class="social-icon" href="#" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
+                </div>
+            </div>
+
+            <div class="footer-col">
+                <h4>Company</h4>
+                <ul>
+                    <li><a href="index.html#hero">About Sabroso</a></li>
+                    <li><a href="index.html#how">Our Story</a></li>
+                    <li><a href="index.html#categories">Home Chefs</a></li>
+                    <li><a href="#">Careers</a></li>
+                    <li><a href="#">Press</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-col">
+                <h4>Contact</h4>
+                <ul>
+                    <li><a href="mailto:hello@sabroso.com">hello@sabroso.com</a></li>
+                    <li><a href="tel:+18001234567">+1 800 123 4567</a></li>
+                    <li><a href="#">Help Centre</a></li>
+                    <li><a href="#">Live Chat</a></li>
+                    <li><a href="#">Partner With Us</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-col">
+                <h4>Newsletter</h4>
+                <p style="font-size:0.85rem;opacity:0.65;margin-bottom:1rem;line-height:1.6;">Get weekly specials, new
+                    cuisine drops and exclusive discounts.</p>
+                <div class="newsletter-form">
+                    <input type="email" id="newsletterEmail" placeholder="your@email.com" />
+                    <button onclick="subscribeNewsletter()"><i class="fas fa-paper-plane"></i></button>
+                </div>
+            </div>
+        </div>
+
+        <div class="footer-bottom">
+            <p>© 2026 Sabroso – Global Cloud Kitchen. All rights reserved.</p>
+            <p>Privacy Policy · Terms of Service · Cookie Settings</p>
+        </div>
+    </footer>
+
+    <!-- TOAST -->
+    <div id="toast"><i class="fas fa-check-circle"></i> <span id="toastMsg"></span></div>
+
+    <script src="api-config.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const user = auth.getUser();
+            if (!user) {
+                alert('Please login to continue to checkout.');
+                window.location.href = 'login.html';
+                return;
+            }
+
+            const authBtn = document.querySelector('.nav-cta .btn-outline');
+            if (authBtn) {
+                authBtn.id = 'authBtn';
+                authBtn.innerHTML = `<i class="fas fa-user-circle"></i> ${user.name}`;
+                authBtn.href = user.role === 'admin' ? 'admin.html' : '#';
+                if (user.role !== 'admin') {
+                    authBtn.onclick = (e) => {
+                        e.preventDefault();
+                        if (confirm('Do you want to logout?')) auth.logout();
+                    };
+                }
+            }
+
+            // Pre-fill user info if available
+            if (document.getElementById('fullName')) document.getElementById('fullName').value = user.name;
+            if (document.getElementById('email')) document.getElementById('email').value = user.email;
+        });
+    </script>
+    <script src="checkout.js"></script>
+</body>
+
+</html>

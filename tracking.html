@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Track Order – Sabroso | Global Cloud Kitchen</title>
+    <meta name="description"
+        content="Track your Sabroso order in real-time. See preparation status, delivery progress, and estimated arrival time." />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&family=Playfair+Display:wght@700;800&display=swap"
+        rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+    <link rel="stylesheet" href="tracking.css" />
+</head>
+
+<body>
+
+    <!-- NAVBAR -->
+    <nav id="navbar">
+        <a href="index.html" class="nav-logo">Sabroso</a>
+        <ul class="nav-links">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="menu.html">Menu</a></li>
+            <li><a href="index.html#how">How It Works</a></li>
+            <li><a href="index.html#reviews">Reviews</a></li>
+        </ul>
+        <div class="nav-cta">
+            <a href="login.html" class="btn-outline" style="text-decoration:none">Login</a>
+            <a href="cart.html" class="btn-primary" style="text-decoration:none"><i class="fas fa-shopping-cart"></i>
+                Cart</a>
+        </div>
+        <div class="hamburger"><i class="fas fa-bars"></i></div>
+    </nav>
+
+    <!-- BREADCRUMB -->
+    <div class="breadcrumb-wrap">
+        <div class="breadcrumb">
+            <a href="index.html"><i class="fas fa-home"></i> Home</a>
+            <i class="fas fa-chevron-right"></i>
+            <span>Track Order</span>
+        </div>
+    </div>
+
+    <!-- TRACKING HERO -->
+    <section id="tracking-hero">
+        <div class="hero-inner">
+            <div class="hero-badge"><i class="fas fa-map-marker-alt"></i> Live Tracking</div>
+            <h1>Track Your <span>Order</span></h1>
+            <p>Your delicious food is on its way! Here's the latest status.</p>
+        </div>
+    </section>
+
+    <!-- ORDER STATUS CARD -->
+    <section id="tracking-section">
+        <div class="tracking-layout">
+
+            <!-- MAIN: TIMELINE + MAP -->
+            <div class="tracking-main">
+
+                <!-- ORDER HEADER -->
+                <div class="order-header-card">
+                    <div class="order-header-left">
+                        <div class="order-id-badge">Order #<span id="orderId">SAB-284719</span></div>
+                        <div class="order-date" id="orderDate">March 4, 2026 · 10:42 AM</div>
+                    </div>
+                    <div class="order-header-right">
+                        <div class="status-pill active" id="statusPill"><i class="fas fa-circle"></i> <span
+                                id="statusText">Kitchen Preparing</span></div>
+                    </div>
+                </div>
+
+                <!-- TIMELINE -->
+                <div class="timeline-card">
+                    <h3><i class="fas fa-route"></i> Order Progress</h3>
+                    <div class="timeline" id="timeline">
+
+                        <div class="timeline-track">
+                            <div class="timeline-fill" id="timelineFill"></div>
+                        </div>
+
+                        <div class="timeline-step done" data-step="0">
+                            <div class="step-marker"><i class="fas fa-clipboard-check"></i></div>
+                            <div class="step-content">
+                                <div class="step-title">Order Placed</div>
+                                <div class="step-time" id="step0Time">10:42 AM</div>
+                                <div class="step-desc">Your order has been confirmed and sent to the kitchen.</div>
+                            </div>
+                        </div>
+
+                        <div class="timeline-step active" data-step="1">
+                            <div class="step-marker"><i class="fas fa-fire-burner"></i></div>
+                            <div class="step-content">
+                                <div class="step-title">Kitchen Preparing</div>
+                                <div class="step-time" id="step1Time">10:48 AM</div>
+                                <div class="step-desc">Our chefs are crafting your meal with fresh ingredients.</div>
+                            </div>
+                        </div>
+
+                        <div class="timeline-step" data-step="2">
+                            <div class="step-marker"><i class="fas fa-motorcycle"></i></div>
+                            <div class="step-content">
+                                <div class="step-title">Out for Delivery</div>
+                                <div class="step-time" id="step2Time">--:--</div>
+                                <div class="step-desc">Your rider is picking up the order and heading your way.</div>
+                            </div>
+                        </div>
+
+                        <div class="timeline-step" data-step="3">
+                            <div class="step-marker"><i class="fas fa-house-circle-check"></i></div>
+                            <div class="step-content">
+                                <div class="step-title">Delivered</div>
+                                <div class="step-time" id="step3Time">--:--</div>
+                                <div class="step-desc">Enjoy your delicious Sabroso meal! Bon appétit! 🎉</div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+
+                <!-- DELIVERY INFO -->
+                <div class="delivery-info-card">
+                    <h3><i class="fas fa-truck"></i> Delivery Details</h3>
+                    <div class="delivery-grid">
+                        <div class="delivery-item">
+                            <div class="delivery-icon"><i class="fas fa-clock"></i></div>
+                            <div>
+                                <div class="delivery-label">Estimated Time</div>
+                                <div class="delivery-val" id="etaVal">25–35 min</div>
+                            </div>
+                        </div>
+                        <div class="delivery-item">
+                            <div class="delivery-icon"><i class="fas fa-map-pin"></i></div>
+                            <div>
+                                <div class="delivery-label">Delivery Address</div>
+                                <div class="delivery-val" id="addressVal">123 Main Street, Hyderabad</div>
+                            </div>
+                        </div>
+                        <div class="delivery-item">
+                            <div class="delivery-icon"><i class="fas fa-user"></i></div>
+                            <div>
+                                <div class="delivery-label">Delivery Partner</div>
+                                <div class="delivery-val" id="riderVal">Ravi Kumar · ⭐ 4.8</div>
+                            </div>
+                        </div>
+                        <div class="delivery-item">
+                            <div class="delivery-icon"><i class="fas fa-phone"></i></div>
+                            <div>
+                                <div class="delivery-label">Contact Rider</div>
+                                <div class="delivery-val"><a href="tel:+919876543210" class="rider-call"><i
+                                            class="fas fa-phone"></i> Call Now</a></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- LIVE SIMULATION CONTROL -->
+                <div class="sim-card">
+                    <h3><i class="fas fa-play-circle"></i> Live Demo</h3>
+                    <p>Click the button below to simulate order progress in real time.</p>
+                    <button class="btn-simulate" id="simBtn" onclick="simulateProgress()"><i class="fas fa-forward"></i>
+                        Simulate Next Stage</button>
+                </div>
+
+            </div>
+
+            <!-- SIDEBAR: ORDER DETAILS -->
+            <aside class="order-details">
+                <h3><i class="fas fa-receipt"></i> Order Details</h3>
+                <div class="order-items" id="orderItems"></div>
+                <div class="order-divider"></div>
+                <div class="order-row"><span>Subtotal</span><span id="orderSubtotal">$0.00</span></div>
+                <div class="order-row"><span>Delivery Fee</span><span id="orderDelivery">FREE</span></div>
+                <div class="order-row"><span>Tax (5%)</span><span id="orderTax">$0.00</span></div>
+                <div class="order-divider"></div>
+                <div class="order-row total"><span>Total Paid</span><span id="orderTotal">$0.00</span></div>
+                <div class="order-row payment"><span><i class="fas fa-money-bill-wave"></i> Payment</span><span
+                        id="orderPayment">Cash on Delivery</span></div>
+
+                <div class="order-help">
+                    <h4><i class="fas fa-headset"></i> Need Help?</h4>
+                    <p>Contact our support team for any concerns.</p>
+                    <a href="#" class="help-link"><i class="fas fa-comment-dots"></i> Chat with us</a>
+                    <a href="tel:+911234567890" class="help-link"><i class="fas fa-phone"></i> +91 12345 67890</a>
+                </div>
+
+                <a href="menu.html" class="btn-reorder"><i class="fas fa-redo"></i> Reorder Food</a>
+            </aside>
+
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer id="contact">
+        <div class="footer-grid">
+            <div class="footer-brand">
+                <span class="logo">Sabroso</span>
+                <p>Sabroso – Global Cloud Kitchen connects food lovers with passionate home chefs across the world.
+                    Authentic flavours, delivered with love.</p>
+                <div class="social-icons">
+                    <a class="social-icon" href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                    <a class="social-icon" href="#" aria-label="Twitter"><i class="fab fa-x-twitter"></i></a>
+                    <a class="social-icon" href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                    <a class="social-icon" href="#" aria-label="TikTok"><i class="fab fa-tiktok"></i></a>
+                    <a class="social-icon" href="#" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
+                </div>
+            </div>
+
+            <div class="footer-col">
+                <h4>Company</h4>
+                <ul>
+                    <li><a href="index.html#hero">About Sabroso</a></li>
+                    <li><a href="index.html#how">Our Story</a></li>
+                    <li><a href="index.html#categories">Home Chefs</a></li>
+                    <li><a href="#">Careers</a></li>
+                    <li><a href="#">Press</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-col">
+                <h4>Contact</h4>
+                <ul>
+                    <li><a href="mailto:hello@sabroso.com">hello@sabroso.com</a></li>
+                    <li><a href="tel:+18001234567">+1 800 123 4567</a></li>
+                    <li><a href="#">Help Centre</a></li>
+                    <li><a href="#">Live Chat</a></li>
+                    <li><a href="#">Partner With Us</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-col">
+                <h4>Newsletter</h4>
+                <p style="font-size:0.85rem;opacity:0.65;margin-bottom:1rem;line-height:1.6;">Get weekly specials, new
+                    cuisine drops and exclusive discounts.</p>
+                <div class="newsletter-form">
+                    <input type="email" id="newsletterEmail" placeholder="your@email.com" />
+                    <button onclick="subscribeNewsletter()"><i class="fas fa-paper-plane"></i></button>
+                </div>
+            </div>
+        </div>
+
+        <div class="footer-bottom">
+            <p>© 2026 Sabroso – Global Cloud Kitchen. All rights reserved.</p>
+            <p>Privacy Policy · Terms of Service · Cookie Settings</p>
+        </div>
+    </footer>
+
+    <!-- TOAST -->
+    <div id="toast"><i class="fas fa-check-circle"></i> <span id="toastMsg"></span></div>
+
+    <script src="api-config.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const user = auth.getUser();
+            const authBtn = document.querySelector('.nav-cta .btn-outline');
+            if (user && authBtn) {
+                authBtn.id = 'authBtn';
+                authBtn.innerHTML = `<i class="fas fa-user-circle"></i> ${user.name}`;
+                authBtn.href = user.role === 'admin' ? 'admin.html' : '#';
+                if (user.role !== 'admin') {
+                    authBtn.onclick = (e) => {
+                        e.preventDefault();
+                        if (confirm('Do you want to logout?')) auth.logout();
+                    };
+                }
+            }
+        });
+    </script>
+    <script src="tracking.js"></script>
+</body>
+
+</html>

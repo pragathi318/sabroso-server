@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Dish Details – Sabroso | Global Cloud Kitchen</title>
+    <meta name="description"
+        content="View detailed information about this dish from Sabroso – Global Cloud Kitchen. See ingredients, reviews, and related dishes." />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&family=Playfair+Display:wght@700;800&display=swap"
+        rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+    <link rel="stylesheet" href="details.css" />
+</head>
+
+<body>
+
+    <!-- NAVBAR -->
+    <nav id="navbar">
+        <a href="index.html" class="nav-logo">Sabroso</a>
+        <ul class="nav-links">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="menu.html">Menu</a></li>
+            <li><a href="index.html#how">How It Works</a></li>
+            <li><a href="index.html#reviews">Reviews</a></li>
+        </ul>
+        <div class="nav-cta">
+            <a href="login.html" class="btn-outline" style="text-decoration:none">Login</a>
+            <a href="cart.html" class="btn-primary" id="navCartBtn" style="text-decoration:none"><i
+                    class="fas fa-shopping-cart"></i> Cart (<span id="cartCount">0</span>)</a>
+        </div>
+        <div class="hamburger" id="hamburger"><i class="fas fa-bars"></i></div>
+    </nav>
+
+    <!-- BREADCRUMB -->
+    <div class="breadcrumb-wrap">
+        <div class="breadcrumb">
+            <a href="index.html"><i class="fas fa-home"></i> Home</a>
+            <i class="fas fa-chevron-right"></i>
+            <a href="menu.html">Menu</a>
+            <i class="fas fa-chevron-right"></i>
+            <span id="breadcrumbDish">Dish Details</span>
+        </div>
+    </div>
+
+    <!-- DETAIL SECTION -->
+    <section id="detail-section">
+        <div class="detail-grid">
+
+            <!-- LEFT: IMAGE GALLERY -->
+            <div class="gallery">
+                <div class="gallery-main" id="galleryMain">
+                    <img id="mainImage" src="" alt="Dish Image" />
+                    <span class="gallery-badge" id="galleryBadge"></span>
+                    <button class="gallery-fav" id="favBtn" onclick="toggleFav()"><i class="fas fa-heart"></i></button>
+                </div>
+                <div class="gallery-thumbs" id="galleryThumbs"></div>
+            </div>
+
+            <!-- RIGHT: INFO -->
+            <div class="dish-info">
+                <div class="info-country" id="infoCountry"></div>
+                <h1 class="info-name" id="infoName"></h1>
+                <div class="info-rating" id="infoRating"></div>
+                <p class="info-desc" id="infoDesc"></p>
+                <div class="info-price-row">
+                    <div class="info-price" id="infoPrice"></div>
+                    <span class="info-diet" id="infoDiet"></span>
+                </div>
+
+                <!-- Ingredients -->
+                <div class="info-section">
+                    <h3><i class="fas fa-leaf"></i> Ingredients</h3>
+                    <ul class="ingredients-list" id="ingredientsList"></ul>
+                </div>
+
+                <!-- Quantity & Cart -->
+                <div class="cart-row">
+                    <div class="qty-selector">
+                        <button class="qty-btn" onclick="changeQty(-1)"><i class="fas fa-minus"></i></button>
+                        <span class="qty-val" id="qtyVal">1</span>
+                        <button class="qty-btn" onclick="changeQty(1)"><i class="fas fa-plus"></i></button>
+                    </div>
+                    <button class="btn-add-cart" id="addCartBtn" onclick="addToCart()">
+                        <i class="fas fa-cart-plus"></i> Add to Cart — <span id="totalPrice"></span>
+                    </button>
+                </div>
+
+                <!-- Meta Info -->
+                <div class="meta-grid">
+                    <div class="meta-card"><i class="fas fa-clock"></i>
+                        <div><span class="meta-label">Prep Time</span><span class="meta-val" id="metaPrep"></span></div>
+                    </div>
+                    <div class="meta-card"><i class="fas fa-fire"></i>
+                        <div><span class="meta-label">Calories</span><span class="meta-val" id="metaCal"></span></div>
+                    </div>
+                    <div class="meta-card"><i class="fas fa-truck"></i>
+                        <div><span class="meta-label">Delivery</span><span class="meta-val">25–35 min</span></div>
+                    </div>
+                    <div class="meta-card"><i class="fas fa-utensils"></i>
+                        <div><span class="meta-label">Serves</span><span class="meta-val" id="metaServes"></span></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CUSTOMER REVIEWS -->
+    <section id="reviews-section">
+        <div class="section-header">
+            <div class="section-tag">💬 Customer Reviews</div>
+            <h2 class="section-title">What People <span>Say</span></h2>
+        </div>
+        <div class="review-summary" id="reviewSummary"></div>
+        <div class="reviews-grid" id="reviewsGrid"></div>
+    </section>
+
+    <!-- YOU MAY ALSO LIKE -->
+    <section id="related-section">
+        <div class="section-header">
+            <div class="section-tag">🍽️ You May Also Like</div>
+            <h2 class="section-title">Related <span>Dishes</span></h2>
+        </div>
+        <div class="related-grid" id="relatedGrid"></div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer id="contact">
+        <div class="footer-grid">
+            <div class="footer-brand">
+                <span class="logo">Sabroso</span>
+                <p>Sabroso – Global Cloud Kitchen connects food lovers with passionate home chefs across the world.
+                    Authentic flavours, delivered with love.</p>
+                <div class="social-icons">
+                    <a class="social-icon" href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                    <a class="social-icon" href="#" aria-label="Twitter"><i class="fab fa-x-twitter"></i></a>
+                    <a class="social-icon" href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                    <a class="social-icon" href="#" aria-label="TikTok"><i class="fab fa-tiktok"></i></a>
+                    <a class="social-icon" href="#" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
+                </div>
+            </div>
+
+            <div class="footer-col">
+                <h4>Company</h4>
+                <ul>
+                    <li><a href="index.html#hero">About Sabroso</a></li>
+                    <li><a href="index.html#how">Our Story</a></li>
+                    <li><a href="index.html#categories">Home Chefs</a></li>
+                    <li><a href="#">Careers</a></li>
+                    <li><a href="#">Press</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-col">
+                <h4>Contact</h4>
+                <ul>
+                    <li><a href="mailto:hello@sabroso.com">hello@sabroso.com</a></li>
+                    <li><a href="tel:+18001234567">+1 800 123 4567</a></li>
+                    <li><a href="#">Help Centre</a></li>
+                    <li><a href="#">Live Chat</a></li>
+                    <li><a href="#">Partner With Us</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-col">
+                <h4>Newsletter</h4>
+                <p style="font-size:0.85rem;opacity:0.65;margin-bottom:1rem;line-height:1.6;">Get weekly specials, new
+                    cuisine drops and exclusive discounts.</p>
+                <div class="newsletter-form">
+                    <input type="email" id="newsletterEmail" placeholder="your@email.com" />
+                    <button onclick="subscribeNewsletter()"><i class="fas fa-paper-plane"></i></button>
+                </div>
+            </div>
+        </div>
+
+        <div class="footer-bottom">
+            <p>© 2026 Sabroso – Global Cloud Kitchen. All rights reserved.</p>
+            <p>Privacy Policy · Terms of Service · Cookie Settings</p>
+        </div>
+    </footer>
+
+    <!-- TOAST -->
+    <div id="toast"><i class="fas fa-check-circle"></i> <span id="toastMsg">Added to cart!</span></div>
+
+    <!-- SCROLL TO TOP -->
+    <button id="scrollTop" onclick="window.scrollTo({top:0,behavior:'smooth'})" aria-label="Scroll to top">
+        <i class="fas fa-arrow-up"></i>
+    </button>
+
+    <script src="api-config.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const user = auth.getUser();
+            const authBtn = document.querySelector('.nav-cta .btn-outline');
+            if (user && authBtn) {
+                authBtn.id = 'authBtn';
+                authBtn.innerHTML = `<i class="fas fa-user-circle"></i> ${user.name}`;
+                authBtn.href = user.role === 'admin' ? 'admin.html' : '#';
+                if (user.role !== 'admin') {
+                    authBtn.onclick = (e) => {
+                        e.preventDefault();
+                        if (confirm('Do you want to logout?')) auth.logout();
+                    };
+                }
+            }
+        });
+    </script>
+    <script src="details.js"></script>
+</body>
+
+</html>

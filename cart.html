@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Your Cart – Sabroso | Global Cloud Kitchen</title>
+    <meta name="description"
+        content="Review your Sabroso cart. Adjust quantities, view your order summary, and proceed to checkout." />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&family=Playfair+Display:wght@700;800&display=swap"
+        rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+    <link rel="stylesheet" href="cart.css" />
+</head>
+
+<body>
+
+    <!-- NAVBAR -->
+    <nav id="navbar">
+        <a href="index.html" class="nav-logo">Sabroso</a>
+        <ul class="nav-links">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="menu.html">Menu</a></li>
+            <li><a href="index.html#how">How It Works</a></li>
+            <li><a href="index.html#reviews">Reviews</a></li>
+        </ul>
+        <div class="nav-cta">
+            <a href="login.html" class="btn-outline" style="text-decoration:none">Login</a>
+            <button class="btn-primary"><i class="fas fa-shopping-cart"></i> Cart (<span
+                    id="navCartCount">0</span>)</button>
+        </div>
+        <div class="hamburger"><i class="fas fa-bars"></i></div>
+    </nav>
+
+    <!-- BREADCRUMB -->
+    <div class="breadcrumb-wrap">
+        <div class="breadcrumb">
+            <a href="index.html"><i class="fas fa-home"></i> Home</a>
+            <i class="fas fa-chevron-right"></i>
+            <span>Shopping Cart</span>
+        </div>
+    </div>
+
+    <!-- CART HERO -->
+    <section id="cart-hero">
+        <div class="cart-hero-inner">
+            <div class="hero-badge"><i class="fas fa-shopping-bag"></i> Your Order</div>
+            <h1>Shopping <span>Cart</span></h1>
+            <p id="cartSubtitle">You have <strong><span id="heroItemCount">0</span> items</strong> in your cart</p>
+        </div>
+    </section>
+
+    <!-- CART CONTENT -->
+    <section id="cart-section">
+
+        <!-- EMPTY STATE -->
+        <div class="empty-cart" id="emptyCart">
+            <div class="empty-icon"><i class="fas fa-shopping-cart"></i></div>
+            <h2>Your cart is empty</h2>
+            <p>Looks like you haven't added any dishes yet. Explore our global menu and find something delicious!</p>
+            <a href="menu.html" class="btn-cta"><i class="fas fa-utensils"></i> Browse Menu</a>
+        </div>
+
+        <!-- FILLED STATE -->
+        <div class="cart-layout" id="cartLayout" style="display:none">
+
+            <!-- LEFT: CART ITEMS -->
+            <div class="cart-items-panel">
+                <div class="cart-items-header">
+                    <h2><i class="fas fa-shopping-bag"></i> Cart Items</h2>
+                    <button class="btn-clear" onclick="clearCart()"><i class="fas fa-trash-alt"></i> Clear All</button>
+                </div>
+                <div class="cart-items-list" id="cartItemsList"></div>
+            </div>
+
+            <!-- RIGHT: ORDER SUMMARY -->
+            <aside class="order-summary">
+                <h3><i class="fas fa-receipt"></i> Order Summary</h3>
+                <div class="summary-rows">
+                    <div class="summary-row"><span>Subtotal</span><span id="subtotal">$0.00</span></div>
+                    <div class="summary-row"><span>Delivery Fee</span><span id="deliveryFee">$0.00</span></div>
+                    <div class="summary-row discount" id="discountRow" style="display:none"><span>Discount</span><span
+                            id="discountAmt">-$0.00</span></div>
+                    <div class="summary-divider"></div>
+                    <div class="summary-row total"><span>Total</span><span id="totalAmount">$0.00</span></div>
+                </div>
+
+                <!-- Promo Code -->
+                <div class="promo-section">
+                    <label for="promoInput">Promo Code</label>
+                    <div class="promo-input-wrap">
+                        <input type="text" id="promoInput" placeholder="Enter code" />
+                        <button onclick="applyPromo()">Apply</button>
+                    </div>
+                    <p class="promo-hint" id="promoHint"></p>
+                </div>
+
+                <!-- Info Cards -->
+                <div class="summary-info">
+                    <div class="info-chip"><i class="fas fa-truck"></i> Free delivery on orders over $25</div>
+                    <div class="info-chip"><i class="fas fa-clock"></i> Estimated delivery: 25–35 min</div>
+                    <div class="info-chip"><i class="fas fa-shield-alt"></i> Secure checkout</div>
+                </div>
+
+                <!-- Action Buttons -->
+                <button class="btn-checkout" onclick="proceedCheckout()"><i class="fas fa-lock"></i> Proceed to
+                    Checkout</button>
+                <a href="menu.html" class="btn-continue"><i class="fas fa-arrow-left"></i> Continue Shopping</a>
+            </aside>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer id="contact">
+        <div class="footer-grid">
+            <div class="footer-brand">
+                <span class="logo">Sabroso</span>
+                <p>Sabroso – Global Cloud Kitchen connects food lovers with passionate home chefs across the world.
+                    Authentic flavours, delivered with love.</p>
+                <div class="social-icons">
+                    <a class="social-icon" href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                    <a class="social-icon" href="#" aria-label="Twitter"><i class="fab fa-x-twitter"></i></a>
+                    <a class="social-icon" href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                    <a class="social-icon" href="#" aria-label="TikTok"><i class="fab fa-tiktok"></i></a>
+                    <a class="social-icon" href="#" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
+                </div>
+            </div>
+
+            <div class="footer-col">
+                <h4>Company</h4>
+                <ul>
+                    <li><a href="index.html#hero">About Sabroso</a></li>
+                    <li><a href="index.html#how">Our Story</a></li>
+                    <li><a href="index.html#categories">Home Chefs</a></li>
+                    <li><a href="#">Careers</a></li>
+                    <li><a href="#">Press</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-col">
+                <h4>Contact</h4>
+                <ul>
+                    <li><a href="mailto:hello@sabroso.com">hello@sabroso.com</a></li>
+                    <li><a href="tel:+18001234567">+1 800 123 4567</a></li>
+                    <li><a href="#">Help Centre</a></li>
+                    <li><a href="#">Live Chat</a></li>
+                    <li><a href="#">Partner With Us</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-col">
+                <h4>Newsletter</h4>
+                <p style="font-size:0.85rem;opacity:0.65;margin-bottom:1rem;line-height:1.6;">Get weekly specials, new
+                    cuisine drops and exclusive discounts.</p>
+                <div class="newsletter-form">
+                    <input type="email" id="newsletterEmail" placeholder="your@email.com" />
+                    <button onclick="subscribeNewsletter()"><i class="fas fa-paper-plane"></i></button>
+                </div>
+            </div>
+        </div>
+
+        <div class="footer-bottom">
+            <p>© 2026 Sabroso – Global Cloud Kitchen. All rights reserved.</p>
+            <p>Privacy Policy · Terms of Service · Cookie Settings</p>
+        </div>
+    </footer>
+
+    <!-- TOAST -->
+    <div id="toast"><i class="fas fa-check-circle"></i> <span id="toastMsg">Updated!</span></div>
+
+    <!-- SCROLL TOP -->
+    <button id="scrollTop" onclick="window.scrollTo({top:0,behavior:'smooth'})"><i class="fas fa-arrow-up"></i></button>
+
+    <script src="api-config.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const user = auth.getUser();
+            const authBtn = document.querySelector('.nav-cta .btn-outline');
+            if (user && authBtn) {
+                authBtn.id = 'authBtn';
+                authBtn.innerHTML = `<i class="fas fa-user-circle"></i> ${user.name}`;
+                authBtn.href = user.role === 'admin' ? 'admin.html' : '#';
+                if (user.role !== 'admin') {
+                    authBtn.onclick = (e) => {
+                        e.preventDefault();
+                        if (confirm('Do you want to logout?')) auth.logout();
+                    };
+                }
+            }
+        });
+    </script>
+    <script src="cart.js"></script>
+</body>
+
+</html>

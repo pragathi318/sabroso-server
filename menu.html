@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Global Menu – Sabroso | Explore Authentic Dishes From Around the World</title>
+    <meta name="description"
+        content="Explore Sabroso's full global menu. Filter by cuisine, price, rating and diet. Authentic comfort food from Europe, Japan, Korea, Mexico, Africa and beyond." />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&family=Playfair+Display:wght@700;800&display=swap"
+        rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+    <link rel="stylesheet" href="menu.css" />
+</head>
+
+<body>
+
+    <!-- NAVBAR -->
+    <nav id="navbar">
+        <a href="index.html" class="nav-logo">Sabroso</a>
+        <ul class="nav-links">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="menu.html" class="active">Menu</a></li>
+            <li><a href="index.html#how">How It Works</a></li>
+            <li><a href="index.html#reviews">Reviews</a></li>
+        </ul>
+        <div class="nav-cta">
+            <a href="login.html" class="btn-outline" id="authBtn" style="text-decoration:none">Login</a>
+            <a href="cart.html" class="btn-primary" style="text-decoration:none"><i class="fas fa-shopping-cart"></i>
+                Cart (<span id="cartCount">0</span>)</a>
+        </div>
+        <div class="hamburger" id="hamburger"><i class="fas fa-bars"></i></div>
+    </nav>
+
+    <!-- MENU HERO -->
+    <section id="menu-hero">
+        <div class="menu-hero-bg"></div>
+        <div class="menu-hero-overlay"></div>
+        <div class="menu-hero-content">
+            <div class="hero-badge"><i class="fas fa-globe-americas"></i> 120+ Dishes · 30+ Countries</div>
+            <h1>Global <span>Menu</span></h1>
+            <p>Explore authentic comfort food from around the world.</p>
+            <div class="menu-search-bar">
+                <i class="fas fa-search"></i>
+                <input type="text" id="menuSearch" placeholder="Search dishes, cuisines, ingredients…"
+                    oninput="filterDishes()" />
+            </div>
+        </div>
+    </section>
+
+    <!-- MENU MAIN -->
+    <section id="menu-main">
+        <div class="menu-layout">
+
+            <!-- SIDEBAR FILTERS -->
+            <aside class="filter-sidebar" id="filterSidebar">
+                <div class="filter-header">
+                    <h3><i class="fas fa-sliders-h"></i> Filters</h3>
+                    <button class="filter-reset" onclick="resetFilters()">Reset All</button>
+                </div>
+
+                <!-- My Favorites -->
+                <div class="filter-group">
+                    <h4>My Favorites</h4>
+                    <label class="filter-check"><input type="checkbox" id="favFilter" value="favorites"
+                            onchange="filterDishes()" /><span class="checkmark"></span>❤️ Only Show Favorites</label>
+                </div>
+
+                <!-- Cuisine -->
+                <div class="filter-group">
+                    <h4>Cuisine</h4>
+                    <label class="filter-check"><input type="checkbox" value="European"
+                            onchange="filterDishes()" /><span class="checkmark"></span>🇪🇺 Europe</label>
+                    <label class="filter-check"><input type="checkbox" value="Japanese"
+                            onchange="filterDishes()" /><span class="checkmark"></span>🇯🇵 Japan</label>
+                    <label class="filter-check"><input type="checkbox" value="Korean" onchange="filterDishes()" /><span
+                            class="checkmark"></span>🇰🇷 Korea</label>
+                    <label class="filter-check"><input type="checkbox" value="Mexican" onchange="filterDishes()" /><span
+                            class="checkmark"></span>🇲🇽 Mexico</label>
+                    <label class="filter-check"><input type="checkbox" value="African" onchange="filterDishes()" /><span
+                            class="checkmark"></span>🌍 Africa</label>
+                </div>
+
+                <!-- Price Range -->
+                <div class="filter-group">
+                    <h4>Price Range</h4>
+                    <div class="price-range-display">
+                        <span>$0</span><span id="priceVal">$30</span>
+                    </div>
+                    <input type="range" min="0" max="30" value="30" id="priceRange" class="range-slider"
+                        oninput="updatePriceLabel(); filterDishes()" />
+                </div>
+
+                <!-- Rating -->
+                <div class="filter-group">
+                    <h4>Rating</h4>
+                    <label class="filter-check"><input type="radio" name="rating" value="0" checked
+                            onchange="filterDishes()" /><span class="checkmark radio"></span>All Ratings</label>
+                    <label class="filter-check"><input type="radio" name="rating" value="4.5"
+                            onchange="filterDishes()" /><span class="checkmark radio"></span>★ 4.5 & above</label>
+                    <label class="filter-check"><input type="radio" name="rating" value="4"
+                            onchange="filterDishes()" /><span class="checkmark radio"></span>★ 4.0 & above</label>
+                    <label class="filter-check"><input type="radio" name="rating" value="3.5"
+                            onchange="filterDishes()" /><span class="checkmark radio"></span>★ 3.5 & above</label>
+                </div>
+
+                <!-- Diet -->
+                <div class="filter-group">
+                    <h4>Diet Preference</h4>
+                    <label class="filter-check"><input type="radio" name="diet" value="all" checked
+                            onchange="filterDishes()" /><span class="checkmark radio"></span>All</label>
+                    <label class="filter-check"><input type="radio" name="diet" value="veg"
+                            onchange="filterDishes()" /><span class="checkmark radio"></span>🥬 Vegetarian</label>
+                    <label class="filter-check"><input type="radio" name="diet" value="non-veg"
+                            onchange="filterDishes()" /><span class="checkmark radio"></span>🍗 Non-Veg</label>
+                </div>
+
+                <button class="btn-apply-filter" onclick="filterDishes()"><i class="fas fa-check"></i> Apply
+                    Filters</button>
+            </aside>
+
+            <!-- MOBILE FILTER TOGGLE -->
+            <button class="mobile-filter-btn" id="mobileFilterBtn" onclick="toggleMobileFilter()">
+                <i class="fas fa-filter"></i> Filters
+            </button>
+
+            <!-- DISH GRID -->
+            <div class="menu-content">
+                <div class="menu-top-bar">
+                    <p class="results-count"><span id="resultCount">10</span> dishes found</p>
+                    <div class="sort-wrap">
+                        <label for="sortSelect">Sort by:</label>
+                        <select id="sortSelect" onchange="filterDishes()">
+                            <option value="popular">Most Popular</option>
+                            <option value="price-low">Price: Low → High</option>
+                            <option value="price-high">Price: High → Low</option>
+                            <option value="rating">Highest Rated</option>
+                            <option value="name">Name A–Z</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="dishes-grid" id="dishesGrid"></div>
+                <div class="no-results" id="noResults" style="display:none;">
+                    <i class="fas fa-search"></i>
+                    <h3>No dishes found</h3>
+                    <p>Try adjusting your filters or search term.</p>
+                    <button class="btn-primary" onclick="resetFilters()">Reset Filters</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer id="contact">
+        <div class="footer-grid">
+            <div class="footer-brand">
+                <span class="logo">Sabroso</span>
+                <p>Sabroso – Global Cloud Kitchen connects food lovers with passionate home chefs across the world.
+                    Authentic flavours, delivered with love.</p>
+                <div class="social-icons">
+                    <a class="social-icon" href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                    <a class="social-icon" href="#" aria-label="Twitter"><i class="fab fa-x-twitter"></i></a>
+                    <a class="social-icon" href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                    <a class="social-icon" href="#" aria-label="TikTok"><i class="fab fa-tiktok"></i></a>
+                    <a class="social-icon" href="#" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
+                </div>
+            </div>
+
+            <div class="footer-col">
+                <h4>Company</h4>
+                <ul>
+                    <li><a href="index.html#hero">About Sabroso</a></li>
+                    <li><a href="index.html#how">Our Story</a></li>
+                    <li><a href="index.html#categories">Home Chefs</a></li>
+                    <li><a href="#">Careers</a></li>
+                    <li><a href="#">Press</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-col">
+                <h4>Contact</h4>
+                <ul>
+                    <li><a href="mailto:hello@sabroso.com">hello@sabroso.com</a></li>
+                    <li><a href="tel:+18001234567">+1 800 123 4567</a></li>
+                    <li><a href="#">Help Centre</a></li>
+                    <li><a href="#">Live Chat</a></li>
+                    <li><a href="#">Partner With Us</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-col">
+                <h4>Newsletter</h4>
+                <p style="font-size:0.85rem;opacity:0.65;margin-bottom:1rem;line-height:1.6;">Get weekly specials, new
+                    cuisine drops and exclusive discounts.</p>
+                <div class="newsletter-form">
+                    <input type="email" id="newsletterEmail" placeholder="your@email.com" />
+                    <button onclick="subscribeNewsletter()"><i class="fas fa-paper-plane"></i></button>
+                </div>
+            </div>
+        </div>
+
+        <div class="footer-bottom">
+            <p>© 2026 Sabroso – Global Cloud Kitchen. All rights reserved.</p>
+            <p>Privacy Policy · Terms of Service · Cookie Settings</p>
+        </div>
+    </footer>
+
+    <!-- TOAST -->
+    <div id="toast"><i class="fas fa-check-circle"></i> <span id="toastMsg">Added to cart!</span></div>
+
+    <!-- MOBILE MENU -->
+    <div class="mobile-menu" id="mobileMenu">
+        <div class="mobile-menu-close" id="mobileMenuClose"><i class="fas fa-times"></i></div>
+        <ul class="mobile-menu-links">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="menu.html" class="active">Menu</a></li>
+            <li><a href="index.html#how">How It Works</a></li>
+            <li><a href="index.html#reviews">Reviews</a></li>
+        </ul>
+        <div class="mobile-menu-cta">
+            <a href="login.html" class="btn-outline" style="text-decoration:none">Login</a>
+            <a href="cart.html" class="btn-primary" style="text-decoration:none"><i class="fas fa-shopping-cart"></i>
+                Cart</a>
+        </div>
+    </div>
+
+    <!-- SCROLL TO TOP -->
+    <button id="scrollTop" onclick="window.scrollTo({top:0,behavior:'smooth'})" aria-label="Scroll to top">
+        <i class="fas fa-arrow-up"></i>
+    </button>
+
+    <script src="api-config.js"></script>
+    <script src="menu.js"></script>
+</body>
+
+</html>

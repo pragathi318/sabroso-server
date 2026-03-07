@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Login – Sabroso | Global Cloud Kitchen</title>
+    <meta name="description"
+        content="Sign in or create a Sabroso account. Order authentic global cuisine from the comfort of your home." />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&family=Playfair+Display:wght@700;800&display=swap"
+        rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+    <link rel="stylesheet" href="login.css" />
+</head>
+
+<body>
+
+    <!-- BACK NAV -->
+    <a href="index.html" class="back-home" id="backHome"><i class="fas fa-arrow-left"></i> Back to Home</a>
+
+    <main class="auth-container">
+
+        <!-- LEFT PANEL -->
+        <div class="auth-left">
+            <div class="auth-left-overlay"></div>
+            <div class="auth-left-content">
+                <a href="index.html" class="logo">Sabroso</a>
+                <div class="left-text">
+                    <h1>Welcome to <span>Sabroso</span></h1>
+                    <p class="tagline">Taste the World From Home</p>
+                    <p class="sub">Authentic comfort food from 30+ countries, delivered fresh to your doorstep.</p>
+                </div>
+                <div class="left-features">
+                    <div class="feature"><i class="fas fa-globe-americas"></i><span>Global Cuisines</span></div>
+                    <div class="feature"><i class="fas fa-truck"></i><span>Fast Delivery</span></div>
+                    <div class="feature"><i class="fas fa-star"></i><span>Top Rated</span></div>
+                </div>
+                <div class="left-footer">
+                    <p>&copy; 2026 Sabroso – Global Cloud Kitchen</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- RIGHT PANEL -->
+        <div class="auth-right">
+            <div class="auth-right-inner">
+
+                <!-- LOGIN FORM -->
+                <div class="auth-form" id="loginForm">
+                    <div class="form-header">
+                        <div class="form-icon"><i class="fas fa-sign-in-alt"></i></div>
+                        <h2>Welcome Back</h2>
+                        <p>Sign in to your Sabroso account</p>
+                    </div>
+
+                    <!-- SOCIAL BUTTONS -->
+                    <div class="social-row">
+                        <button class="social-btn google" onclick="socialLogin('Google')"><i class="fab fa-google"></i>
+                            Google</button>
+                        <button class="social-btn fb" onclick="socialLogin('Facebook')"><i
+                                class="fab fa-facebook-f"></i> Facebook</button>
+                    </div>
+                    <div class="divider"><span>or sign in with email</span></div>
+
+                    <form onsubmit="handleLogin(event)">
+                        <div class="input-group">
+                            <label for="loginEmail"><i class="fas fa-envelope"></i> Email Address</label>
+                            <input type="email" id="loginEmail" placeholder="you@email.com" required />
+                        </div>
+                        <div class="input-group">
+                            <label for="loginPassword"><i class="fas fa-lock"></i> Password</label>
+                            <div class="password-wrap">
+                                <input type="password" id="loginPassword" placeholder="Enter your password" required />
+                                <button type="button" class="toggle-pw"
+                                    onclick="togglePassword('loginPassword', this)"><i class="fas fa-eye"></i></button>
+                            </div>
+                        </div>
+                        <div class="form-extras">
+                            <label class="remember"><input type="checkbox" checked /><span class="checkmark-sm"></span>
+                                Remember me</label>
+                            <a href="#" class="forgot">Forgot Password?</a>
+                        </div>
+                        <button type="submit" class="btn-submit" id="loginBtn"><i class="fas fa-sign-in-alt"></i> Sign
+                            In</button>
+                    </form>
+
+                    <p class="switch-text">Don't have an account? <a href="#" onclick="showRegister(event)">Create
+                            Account</a></p>
+                </div>
+
+                <!-- REGISTER FORM -->
+                <div class="auth-form" id="registerForm" style="display:none">
+                    <div class="form-header">
+                        <div class="form-icon"><i class="fas fa-user-plus"></i></div>
+                        <h2>Create Account</h2>
+                        <p>Join Sabroso and explore the world of flavours</p>
+                    </div>
+
+                    <div class="social-row">
+                        <button class="social-btn google" onclick="socialLogin('Google')"><i class="fab fa-google"></i>
+                            Google</button>
+                        <button class="social-btn fb" onclick="socialLogin('Facebook')"><i
+                                class="fab fa-facebook-f"></i> Facebook</button>
+                    </div>
+                    <div class="divider"><span>or register with email</span></div>
+
+                    <form onsubmit="handleRegister(event)">
+                        <div class="input-group">
+                            <label for="regName"><i class="fas fa-user"></i> Full Name</label>
+                            <input type="text" id="regName" placeholder="Enter your full name" required />
+                        </div>
+                        <div class="input-group">
+                            <label for="regEmail"><i class="fas fa-envelope"></i> Email Address</label>
+                            <input type="email" id="regEmail" placeholder="you@email.com" required />
+                        </div>
+                        <div class="input-group">
+                            <label for="regPhone"><i class="fas fa-phone"></i> Phone Number</label>
+                            <input type="tel" id="regPhone" placeholder="+91 98765 43210" required />
+                        </div>
+                        <div class="input-row">
+                            <div class="input-group">
+                                <label for="regPassword"><i class="fas fa-lock"></i> Password</label>
+                                <div class="password-wrap">
+                                    <input type="password" id="regPassword" placeholder="Min 6 characters" required />
+                                    <button type="button" class="toggle-pw"
+                                        onclick="togglePassword('regPassword', this)"><i
+                                            class="fas fa-eye"></i></button>
+                                </div>
+                            </div>
+                            <div class="input-group">
+                                <label for="regConfirm"><i class="fas fa-shield-alt"></i> Confirm</label>
+                                <div class="password-wrap">
+                                    <input type="password" id="regConfirm" placeholder="Re-enter password" required />
+                                    <button type="button" class="toggle-pw"
+                                        onclick="togglePassword('regConfirm', this)"><i class="fas fa-eye"></i></button>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- PASSWORD STRENGTH -->
+                        <div class="pw-strength" id="pwStrength">
+                            <div class="pw-bar">
+                                <div class="pw-fill" id="pwFill"></div>
+                            </div>
+                            <span class="pw-label" id="pwLabel"></span>
+                        </div>
+                        <label class="terms"><input type="checkbox" id="termsCheck" required /><span
+                                class="checkmark-sm"></span> I agree to the <a href="#">Terms</a> and <a
+                                href="#">Privacy Policy</a></label>
+                        <button type="submit" class="btn-submit" id="registerBtn"><i class="fas fa-user-plus"></i>
+                            Create Account</button>
+                    </form>
+
+                    <p class="switch-text">Already have an account? <a href="#" onclick="showLogin(event)">Sign In</a>
+                    </p>
+                </div>
+
+            </div>
+        </div>
+    </main>
+
+    <!-- TOAST -->
+    <div id="toast"><i class="fas fa-check-circle"></i> <span id="toastMsg"></span></div>
+
+    <script src="api-config.js"></script>
+    <script src="login.js"></script>
+</body>
+
+</html>
