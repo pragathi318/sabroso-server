@@ -165,14 +165,19 @@
 
 /* Center the toast notification to avoid corner clutter */
 #toast {
-    bottom: 2rem !important;
+    bottom: 2.5rem !important;
     right: auto !important;
     left: 50% !important;
-    transform: translateX(-50%) translateY(150%) !important;
+    transform: translateX(-50%) translateY(20px) !important;
+    opacity: 0 !important;
+    visibility: hidden !important;
+    transition: transform 0.3s, opacity 0.3s, visibility 0.3s !important;
 }
 
 #toast.show {
     transform: translateX(-50%) translateY(0) !important;
+    opacity: 1 !important;
+    visibility: visible !important;
 }
 
 @media (max-width: 480px) {
