@@ -1,4 +1,4 @@
-const API_BASE_URL = 'https://sabroso-server.onrender.com/api';
+const API_BASE_URL = 'http://localhost:5000/api';
 
 /**
  * Common fetch wrapper with Auth header support

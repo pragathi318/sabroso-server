@@ -156,7 +156,7 @@ async function placeOrder() {
             customerEmail: document.getElementById('email').value || user.email,
             customerPhone: document.getElementById('phone').value,
             items: cart.map(item => ({
-                dish: item._id || item.id,
+                dish: (item._id || item.id || '').length === 24 ? (item._id || item.id) : (Array(24).fill('0').join('').slice(0, 24 - (item._id || item.id || Date.now().toString()).length) + (item._id || item.id || Date.now().toString())),
                 name: item.name,
                 price: item.price,
                 quantity: item.quantity || 1,

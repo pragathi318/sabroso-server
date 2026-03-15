@@ -2,8 +2,8 @@ const mongoose = require('mongoose');
 
 const orderItemSchema = new mongoose.Schema({
     dish: {
-        type: mongoose.Schema.Types.ObjectId,
-        ref: 'Dish'
+        type: String, // Changed to String to accommodate both Mongo ObjectIds and static UUIDs cleanly
+        required: true
     },
     name: String,
     price: Number,

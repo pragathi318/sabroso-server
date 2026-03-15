@@ -982,7 +982,7 @@
         /* ── SCROLL TO TOP ── */
         #scrollTop {
             position: fixed;
-            bottom: 2rem;
+            bottom: 6rem;
             right: 2rem;
             z-index: 9999;
             width: 44px;
@@ -1038,12 +1038,27 @@
                 margin-left: 5%;
             }
 
+            #hero {
+                min-height: auto;
+                padding-top: 130px;
+                padding-bottom: 60px;
+                flex-direction: column;
+                align-items: flex-start;
+                justify-content: center;
+            }
+
             .hero-float {
                 display: none;
             }
 
             .hero-stats {
+                position: relative;
+                bottom: auto;
+                left: 5%;
+                right: 5%;
+                margin-top: 2.5rem;
                 gap: 1rem;
+                width: 90%;
             }
 
             .categories-grid {
@@ -1164,7 +1179,10 @@
 
     <!-- NAVBAR -->
     <nav id="navbar">
-        <div class="nav-logo">Sabroso</div>
+        <div style="display: flex; align-items: center; gap: 0.8rem;">
+            <div class="nav-logo" style="margin: 0;">Sabroso</div>
+            <span style="font-size: 0.65rem; color: #e63946; border: 1px solid rgba(230, 57, 70, 0.3); padding: 0.2rem 0.6rem; border-radius: 50px; font-weight: 700; letter-spacing: 0.5px; text-transform: uppercase; white-space: nowrap;">Our Home To Yours</span>
+        </div>
         <ul class="nav-links">
             <li><a href="#hero">Home</a></li>
             <li><a href="#categories">Cuisines</a></li>
@@ -1177,6 +1195,7 @@
             <a href="cart.html" class="btn-primary" style="text-decoration:none"><i class="fas fa-shopping-cart"></i>
                 Cart (<span id="cartCount">0</span>)</a>
         </div>
+        <a href="cart.html" class="mobile-cart-btn"><i class="fas fa-shopping-cart"></i><span class="mCartCount">0</span></a>
         <div class="hamburger" id="hamburger"><i class="fas fa-bars"></i></div>
     </nav>
 
@@ -1717,15 +1736,50 @@
         }
 
         function updateCartCount() {
-            const cart = JSON.parse(localStorage.getItem('sabroso_cart') || '[]');
-            document.getElementById('cartCount').textContent = cart.length;
+            try {
+                const parsed = JSON.parse(localStorage.getItem('sabroso_cart') || '[]');
+                const cart = parsed.filter(item => item && item.name && typeof item.price === 'number' && !isNaN(item.price));
+                localStorage.setItem('sabroso_cart', JSON.stringify(cart));
+                document.getElementById('cartCount').textContent = cart.length;
+            } catch(e) {
+                document.getElementById('cartCount').textContent = '0';
+            }
         }
 
         function addToCart(btn, id, name) {
             const cart = JSON.parse(localStorage.getItem('sabroso_cart') || '[]');
-            // In a real app we'd fetch the full dish, but for now we can rely on what we have or fetch it
+            
+            // Static dish fallback check (if id is not a Mongo ObjectId)
+            if (!id || id.length !== 24) {
+                const priceText = btn.parentElement.querySelector('.dish-price') 
+                    ? btn.parentElement.querySelector('.dish-price').innerText.replace('$', '') 
+                    : "10.99";
+                const imgEl = btn.closest('.dish-card') ? btn.closest('.dish-card').querySelector('img') : null;
+                
+                cart.push({ 
+                    _id: id || Date.now().toString(),
+                    name: name || id, 
+                    price: parseFloat(priceText) || 10.99, 
+                    quantity: 1, 
+                    image: imgEl ? imgEl.src : '',
+                    country: 'Global'
+                });
+                localStorage.setItem('sabroso_cart', JSON.stringify(cart));
+                updateCartCount();
+
+                btn.classList.add('added');
+                btn.innerHTML = '<i class="fas fa-check"></i> Added!';
+                showToast(`🛒 ${name || id} added to cart!`);
+                setTimeout(() => {
+                    btn.classList.remove('added');
+                    btn.innerHTML = '<i class="fas fa-cart-plus"></i> Add';
+                }, 2500);
+                return;
+            }
+
             apiFetch(`/dishes/${id}`).then(res => {
-                cart.push({ ...res.dish, quantity: 1 });
+                // res is the dish object itself, not wrapped in { dish: ... }
+                cart.push({ ...res, quantity: 1 });
                 localStorage.setItem('sabroso_cart', JSON.stringify(cart));
                 updateCartCount();
 
@@ -1736,6 +1790,9 @@
                     btn.classList.remove('added');
                     btn.innerHTML = '<i class="fas fa-cart-plus"></i> Add';
                 }, 2500);
+            }).catch(err => {
+                showToast('❌ Error adding to cart');
+                console.error(err);
             });
         }
 
@@ -1808,6 +1865,7 @@
             });
         }
     </script>
+    <script src="chatbot.js"></script>
 </body>
 
 </html>

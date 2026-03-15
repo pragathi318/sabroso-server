@@ -8,7 +8,14 @@ let promoDiscount = 0;
 function init() {
     const stored = localStorage.getItem('sabroso_cart');
     if (stored) {
-        cart = JSON.parse(stored);
+        try {
+            const parsed = JSON.parse(stored);
+            // Ignore/clear out corrupted items without name/price
+            cart = parsed.filter(item => item && item.name && typeof item.price === 'number' && !isNaN(item.price));
+            localStorage.setItem('sabroso_cart', JSON.stringify(cart));
+        } catch(e) {
+            cart = [];
+        }
     } else {
         cart = [];
     }

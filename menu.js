@@ -172,8 +172,15 @@ function resetFilters() {
 
 // ── CART ──
 function updateCartCount() {
-  cartCount = JSON.parse(localStorage.getItem('sabroso_cart') || '[]').length;
-  document.getElementById('cartCount').textContent = cartCount;
+  try {
+      const parsed = JSON.parse(localStorage.getItem('sabroso_cart') || '[]');
+      const cart = parsed.filter(item => item && item.name && typeof item.price === 'number' && !isNaN(item.price));
+      localStorage.setItem('sabroso_cart', JSON.stringify(cart));
+      cartCount = cart.length;
+      document.getElementById('cartCount').textContent = cartCount;
+  } catch (e) {
+      document.getElementById('cartCount').textContent = '0';
+  }
 }
 
 function addToCart(btn, id, name) {

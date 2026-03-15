@@ -18,7 +18,10 @@
 
     <!-- NAVBAR -->
     <nav id="navbar">
-        <a href="index.html" class="nav-logo">Sabroso</a>
+        <div style="display: flex; align-items: center; gap: 0.8rem;">
+            <a href="index.html" class="nav-logo" style="margin: 0; text-decoration: none;">Sabroso</a>
+            <span style="font-size: 0.65rem; color: #e63946; border: 1px solid rgba(230, 57, 70, 0.3); padding: 0.2rem 0.6rem; border-radius: 50px; font-weight: 700; letter-spacing: 0.5px; text-transform: uppercase; white-space: nowrap;">Our Home To Yours</span>
+        </div>
         <ul class="nav-links">
             <li><a href="index.html">Home</a></li>
             <li><a href="menu.html">Menu</a></li>
@@ -30,6 +33,7 @@
             <button class="btn-primary"><i class="fas fa-shopping-cart"></i> Cart (<span
                     id="navCartCount">0</span>)</button>
         </div>
+        <a href="cart.html" class="mobile-cart-btn"><i class="fas fa-shopping-cart"></i><span class="mCartCount">0</span></a>
         <div class="hamburger"><i class="fas fa-bars"></i></div>
     </nav>
 
@@ -191,6 +195,7 @@
         });
     </script>
     <script src="cart.js"></script>
+    <script src="chatbot.js"></script>
 </body>
 
 </html>
