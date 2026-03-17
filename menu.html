@@ -73,38 +73,43 @@
                 <!-- Cuisine -->
                 <div class="filter-group">
                     <h4>Cuisine</h4>
-                    <label class="filter-check"><input type="checkbox" value="European"
-                            onchange="filterDishes()" /><span class="checkmark"></span>🇪🇺 Europe</label>
-                    <label class="filter-check"><input type="checkbox" value="Japanese"
-                            onchange="filterDishes()" /><span class="checkmark"></span>🇯🇵 Japan</label>
-                    <label class="filter-check"><input type="checkbox" value="Korean" onchange="filterDishes()" /><span
-                            class="checkmark"></span>🇰🇷 Korea</label>
-                    <label class="filter-check"><input type="checkbox" value="Mexican" onchange="filterDishes()" /><span
-                            class="checkmark"></span>🇲🇽 Mexico</label>
-                    <label class="filter-check"><input type="checkbox" value="African" onchange="filterDishes()" /><span
-                    <label class="filter-check"><input type="radio" name="rating" value="0" checked
-                            onchange="filterDishes()" /><span class="checkmark radio"></span>All Ratings</label>
-                    <label class="filter-check"><input type="radio" name="rating" value="4.5"
-                            onchange="filterDishes()" /><span class="checkmark radio"></span>★ 4.5 & above</label>
-                    <label class="filter-check"><input type="radio" name="rating" value="4"
-                            onchange="filterDishes()" /><span class="checkmark radio"></span>★ 4.0 & above</label>
-                    <label class="filter-check"><input type="radio" name="rating" value="3.5"
-                            onchange="filterDishes()" /><span class="checkmark radio"></span>★ 3.5 & above</label>
+                    <label class="filter-check"><input type="checkbox" value="European" onchange="filterDishes()" /><span class="checkmark"></span>🇪🇺 Europe</label>
+                    <label class="filter-check"><input type="checkbox" value="Japanese" onchange="filterDishes()" /><span class="checkmark"></span>🇯🇵 Japan</label>
+                    <label class="filter-check"><input type="checkbox" value="Korean" onchange="filterDishes()" /><span class="checkmark"></span>🇰🇷 Korea</label>
+                    <label class="filter-check"><input type="checkbox" value="Mexican" onchange="filterDishes()" /><span class="checkmark"></span>🇲🇽 Mexico</label>
+                    <label class="filter-check"><input type="checkbox" value="African" onchange="filterDishes()" /><span class="checkmark"></span>🌍 Africa</label>
+                </div>
+
+                <!-- Price -->
+                <div class="filter-group">
+                    <h4>Price Range</h4>
+                    <div class="price-slider-wrap">
+                        <input type="range" id="priceRange" min="0" max="1500" step="50" value="1500" oninput="updatePriceLabel(); filterDishes()" />
+                        <div class="price-labels">
+                            <span>₹0</span>
+                            <span id="priceVal">₹1500</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Rating -->
+                <div class="filter-group">
+                    <h4>Rating</h4>
+                    <label class="filter-check"><input type="radio" name="rating" value="0" checked onchange="filterDishes()" /><span class="checkmark radio"></span>All Ratings</label>
+                    <label class="filter-check"><input type="radio" name="rating" value="4.5" onchange="filterDishes()" /><span class="checkmark radio"></span>★ 4.5 & above</label>
+                    <label class="filter-check"><input type="radio" name="rating" value="4" onchange="filterDishes()" /><span class="checkmark radio"></span>★ 4.0 & above</label>
+                    <label class="filter-check"><input type="radio" name="rating" value="3.5" onchange="filterDishes()" /><span class="checkmark radio"></span>★ 3.5 & above</label>
                 </div>
 
                 <!-- Diet -->
                 <div class="filter-group">
                     <h4>Diet Preference</h4>
-                    <label class="filter-check"><input type="radio" name="diet" value="all" checked
-                            onchange="filterDishes()" /><span class="checkmark radio"></span>All</label>
-                    <label class="filter-check"><input type="radio" name="diet" value="veg"
-                            onchange="filterDishes()" /><span class="checkmark radio"></span>🥬 Vegetarian</label>
-                    <label class="filter-check"><input type="radio" name="diet" value="non-veg"
-                            onchange="filterDishes()" /><span class="checkmark radio"></span>🍗 Non-Veg</label>
+                    <label class="filter-check"><input type="radio" name="diet" value="all" checked onchange="filterDishes()" /><span class="checkmark radio"></span>All</label>
+                    <label class="filter-check"><input type="radio" name="diet" value="veg" onchange="filterDishes()" /><span class="checkmark radio"></span>🥬 Vegetarian</label>
+                    <label class="filter-check"><input type="radio" name="diet" value="non-veg" onchange="filterDishes()" /><span class="checkmark radio"></span>🍗 Non-Veg</label>
                 </div>
 
-                <button class="btn-apply-filter" onclick="filterDishes()"><i class="fas fa-check"></i> Apply
-                    Filters</button>
+                <button class="btn-apply-filter" onclick="filterDishes()"><i class="fas fa-check"></i> Apply Filters</button>
             </aside>
 
             <!-- MOBILE FILTER TOGGLE -->
@@ -115,7 +120,7 @@
             <!-- DISH GRID -->
             <div class="menu-content">
                 <div class="menu-top-bar">
-                    <p class="results-count"><span id="resultCount">10</span> dishes found</p>
+                    <p class="results-count"><span id="resultCount">0</span> dishes found</p>
                     <div class="sort-wrap">
                         <label for="sortSelect">Sort by:</label>
                         <select id="sortSelect" onchange="filterDishes()">
