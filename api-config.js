@@ -1,7 +1,7 @@
-// Auto-detect Local vs Production API 
-const API_BASE_URL = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1'
+const hostname = window.location.hostname;
+const API_BASE_URL = (hostname === 'localhost' || hostname === '127.0.0.1' || hostname === '')
     ? 'http://localhost:5000/api'
-    : '/api';
+    : 'https://sabroso-live.onrender.com/api'; // Corrected production URL found in logs
 /**
  * Common fetch wrapper with Auth header support
  */

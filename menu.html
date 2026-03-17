@@ -82,22 +82,6 @@
                     <label class="filter-check"><input type="checkbox" value="Mexican" onchange="filterDishes()" /><span
                             class="checkmark"></span>🇲🇽 Mexico</label>
                     <label class="filter-check"><input type="checkbox" value="African" onchange="filterDishes()" /><span
-                            class="checkmark"></span>🌍 Africa</label>
-                </div>
-
-                <!-- Price Range -->
-                <div class="filter-group">
-                    <h4>Price Range</h4>
-                    <div class="price-range-display">
-                        <span>$0</span><span id="priceVal">$30</span>
-                    </div>
-                    <input type="range" min="0" max="30" value="30" id="priceRange" class="range-slider"
-                        oninput="updatePriceLabel(); filterDishes()" />
-                </div>
-
-                <!-- Rating -->
-                <div class="filter-group">
-                    <h4>Rating</h4>
                     <label class="filter-check"><input type="radio" name="rating" value="0" checked
                             onchange="filterDishes()" /><span class="checkmark radio"></span>All Ratings</label>
                     <label class="filter-check"><input type="radio" name="rating" value="4.5"

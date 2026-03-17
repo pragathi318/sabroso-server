@@ -1,5 +1,5 @@
-const DELIVERY_FEE = 3.99;
-const FREE_DELIVERY_MIN = 25;
+const DELIVERY_FEE = 99;
+const FREE_DELIVERY_MIN = 800;
 let cart = [];
 let promoApplied = false;
 let promoDiscount = 0;
@@ -57,14 +57,14 @@ function renderItems() {
       <div class="cart-item-info">
         <div class="cart-item-name">${item.name}</div>
         <div class="cart-item-country">${item.country || 'Global'}</div>
-        <div class="cart-item-unit">$${item.price.toFixed(2)} each</div>
+        <div class="cart-item-unit">₹${item.price.toFixed(2)} each</div>
       </div>
       <div class="cart-item-qty">
         <button onclick="changeQty(${i}, -1)"><i class="fas fa-minus"></i></button>
         <span>${item.quantity || 1}</span>
         <button onclick="changeQty(${i}, 1)"><i class="fas fa-plus"></i></button>
       </div>
-      <div class="cart-item-total">$${(item.price * (item.quantity || 1)).toFixed(2)}</div>
+      <div class="cart-item-total">₹${(item.price * (item.quantity || 1)).toFixed(2)}</div>
       <button class="cart-item-remove" onclick="removeItem(${i})" title="Remove"><i class="fas fa-times"></i></button>
     </div>
   `).join('');
@@ -109,19 +109,19 @@ function updateSummary() {
     const discount = promoApplied ? subtotal * promoDiscount : 0;
     const total = subtotal + delivery - discount;
 
-    document.getElementById('subtotal').textContent = `$${subtotal.toFixed(2)}`;
-    document.getElementById('deliveryFee').textContent = delivery === 0 ? 'FREE' : `$${delivery.toFixed(2)}`;
+    document.getElementById('subtotal').textContent = `₹${subtotal.toFixed(2)}`;
+    document.getElementById('deliveryFee').textContent = delivery === 0 ? 'FREE' : `₹${delivery.toFixed(2)}`;
     document.getElementById('deliveryFee').style.color = delivery === 0 ? '#10b981' : '';
 
     const discountRow = document.getElementById('discountRow');
     if (promoApplied) {
         discountRow.style.display = 'flex';
-        document.getElementById('discountAmt').textContent = `-$${discount.toFixed(2)}`;
+        document.getElementById('discountAmt').textContent = `-₹${discount.toFixed(2)}`;
     } else {
         discountRow.style.display = 'none';
     }
 
-    document.getElementById('totalAmount').textContent = `$${total.toFixed(2)}`;
+    document.getElementById('totalAmount').textContent = `₹${total.toFixed(2)}`;
 }
 
 // ── PROMO CODE ──

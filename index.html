@@ -1346,7 +1346,7 @@
                     <div class="dish-name">Tonkotsu Ramen</div>
                     <div class="dish-stars">★★★★★ <span>(248 reviews)</span></div>
                     <div class="dish-footer">
-                        <div class="dish-price">$12.99</div>
+                        <div class="dish-price">₹899</div>
                         <button class="btn-cart" onclick="addToCart(this, 'Tonkotsu Ramen')"><i
                                 class="fas fa-cart-plus"></i> Add</button>
                     </div>
@@ -1366,7 +1366,7 @@
                     <div class="dish-name">Spaghetti Bolognese</div>
                     <div class="dish-stars">★★★★★ <span>(312 reviews)</span></div>
                     <div class="dish-footer">
-                        <div class="dish-price">$11.49</div>
+                        <div class="dish-price">₹599</div>
                         <button class="btn-cart" onclick="addToCart(this, 'Spaghetti Bolognese')"><i
                                 class="fas fa-cart-plus"></i> Add</button>
                     </div>
@@ -1386,7 +1386,7 @@
                     <div class="dish-name">Neapolitan Pizza</div>
                     <div class="dish-stars">★★★★★ <span>(187 reviews)</span></div>
                     <div class="dish-footer">
-                        <div class="dish-price">$13.99</div>
+                        <div class="dish-price">₹699</div>
                         <button class="btn-cart" onclick="addToCart(this, 'Neapolitan Pizza')"><i
                                 class="fas fa-cart-plus"></i> Add</button>
                     </div>
@@ -1406,7 +1406,7 @@
                     <div class="dish-name">Shrimp Pad Thai</div>
                     <div class="dish-stars">★★★★☆ <span>(204 reviews)</span></div>
                     <div class="dish-footer">
-                        <div class="dish-price">$10.99</div>
+                        <div class="dish-price">₹549</div>
                         <button class="btn-cart" onclick="addToCart(this, 'Shrimp Pad Thai')"><i
                                 class="fas fa-cart-plus"></i> Add</button>
                     </div>
@@ -1426,7 +1426,7 @@
                     <div class="dish-name">Bibimbap Bowl</div>
                     <div class="dish-stars">★★★★★ <span>(176 reviews)</span></div>
                     <div class="dish-footer">
-                        <div class="dish-price">$11.99</div>
+                        <div class="dish-price">₹749</div>
                         <button class="btn-cart" onclick="addToCart(this, 'Bibimbap Bowl')"><i
                                 class="fas fa-cart-plus"></i> Add</button>
                     </div>
@@ -1446,7 +1446,7 @@
                     <div class="dish-name">Carne Asada Tacos</div>
                     <div class="dish-stars">★★★★★ <span>(98 reviews)</span></div>
                     <div class="dish-footer">
-                        <div class="dish-price">$9.99</div>
+                        <div class="dish-price">₹499</div>
                         <button class="btn-cart" onclick="addToCart(this, 'Carne Asada Tacos')"><i
                                 class="fas fa-cart-plus"></i> Add</button>
                     </div>
@@ -1720,7 +1720,7 @@
                                 <div class="dish-desc">${d.description}</div>
                                 <div class="dish-stars">${stars} <span>(4.${Math.floor(Math.random() * 9)}k+)</span></div>
                                 <div class="dish-footer">
-                                    <div class="dish-price">$${d.price.toFixed(2)}</div>
+                                    <div class="dish-price">₹${d.price.toFixed(2)}</div>
                                     <button class="btn-cart" onclick="addToCart(this, '${d._id}', '${d.name}')"><i class="fas fa-cart-plus"></i> Add</button>
                                 </div>
                             </div>
@@ -1752,7 +1752,7 @@
             // Static dish fallback check (if id is not a Mongo ObjectId)
             if (!id || id.length !== 24) {
                 const priceText = btn.parentElement.querySelector('.dish-price') 
-                    ? btn.parentElement.querySelector('.dish-price').innerText.replace('$', '') 
+                    ? btn.parentElement.querySelector('.dish-price').innerText.replace('₹', '') 
                     : "10.99";
                 const imgEl = btn.closest('.dish-card') ? btn.closest('.dish-card').querySelector('img') : null;
                 

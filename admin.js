@@ -129,7 +129,7 @@ function orderRow(o) {
     <td class="td-id">${o.orderId}</td>
     <td><div class="td-customer"><div class="td-avatar">${initials}</div><span>${customerName}</span></div></td>
     <td>${dishName}${dishCount}</td>
-    <td><strong>$${(o.total || 0).toFixed(2)}</strong></td>
+    <td><strong>₹${(o.total || 0).toFixed(2)}</strong></td>
     <td><span class="badge ${statusClass}"><i class="fas ${statusIcon}"></i> ${o.orderStatus}</span></td>
     <td><span class="badge ${payClass}">${o.paymentStatus}</span></td>
     <td>${date}</td>
@@ -170,7 +170,7 @@ function orderRowFull(o) {
     <td class="td-id">${o.orderId}</td>
     <td><div class="td-customer"><div class="td-avatar">${initials}</div><span>${customerName}</span></div></td>
     <td>${dishName}${dishCount}</td>
-    <td><strong>$${(o.total || 0).toFixed(2)}</strong></td>
+    <td><strong>₹${(o.total || 0).toFixed(2)}</strong></td>
     <td><span class="badge ${statusClass}"><i class="fas ${statusIcon}"></i> ${o.orderStatus}</span></td>
     <td><span class="badge ${payClass}">${o.paymentStatus}</span></td>
     <td>${date}</td>
@@ -205,7 +205,7 @@ function renderDishesPage(filter = 'all') {
               <span><i class="fas fa-star"></i> ${d.rating || 4.5}</span>
             </div>
             <div class="dm-card-footer">
-              <div class="dm-price">$${(d.price || 0).toFixed(2)}</div>
+              <div class="dm-price">₹${(d.price || 0).toFixed(2)}</div>
               <div class="dm-card-actions">
                 <button class="dm-action" title="Edit" onclick="showToast('✏️ Editing ${d.name}')"><i class="fas fa-pen"></i></button>
                 <button class="dm-action danger" title="Delete" onclick="showToast('🗑️ Removed ${d.name}')"><i class="fas fa-trash"></i></button>
@@ -268,7 +268,7 @@ function renderUsers(filter = 'all') {
       <td>${u.email}</td>
       <td><span class="badge ${roleClass}">${u.role.toUpperCase()}</span></td>
       <td>${ordersCount}</td>
-      <td><strong>$${spentAmount.toFixed(2)}</strong></td>
+      <td><strong>₹${spentAmount.toFixed(2)}</strong></td>
       <td>${joinedDate}</td>
       <td><span class="badge badge-active"><i class="fas fa-circle" style="font-size:.4rem"></i> Active</span></td>
     </tr>`;
@@ -302,7 +302,7 @@ function renderTopDishes() {
       <td><strong>${d.name}</strong></td>
       <td>${d.cuisine}</td>
       <td><strong>${sold}</strong></td>
-      <td><strong>$${revenue.toFixed(2)}</strong></td>
+      <td><strong>₹${revenue.toFixed(2)}</strong></td>
       <td><span class="star-rating">${'★'.repeat(Math.round(d.rating || 4))}${'☆'.repeat(5 - Math.round(d.rating || 4))}</span> ${d.rating || 4.5}</td>
       <td><div class="trend-bar"><div class="trend-bar-track"><div class="trend-bar-fill" style="width:${pct}%;background:${colors[i % colors.length]}"></div></div><span style="font-size:.68rem;color:var(--gray)">${pct}%</span></div></td>
     </tr>`;

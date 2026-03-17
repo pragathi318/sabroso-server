@@ -103,7 +103,7 @@ function renderDishes(list) {
         <div class="dish-desc">${d.description}</div>
         <div class="dish-stars">${stars} <span>(4.${Math.floor(Math.random() * 9)}k orders)</span></div>
         <div class="dish-footer">
-          <div class="dish-price">$${d.price.toFixed(2)}</div>
+          <div class="dish-price">₹${d.price.toFixed(2)}</div>
           <div class="dish-actions">
             <button class="btn-details" onclick="viewDetails('${d._id}')"><i class="fas fa-eye"></i> Details</button>
             <button class="btn-cart" onclick="addToCart(this, '${d._id}', '${d.name}')"><i class="fas fa-cart-plus"></i> Add</button>
@@ -155,14 +155,14 @@ function filterDishes() {
 }
 
 function updatePriceLabel() {
-  document.getElementById('priceVal').textContent = '$' + document.getElementById('priceRange').value;
+  document.getElementById('priceVal').textContent = '₹' + document.getElementById('priceRange').value;
 }
 
 function resetFilters() {
   document.getElementById('menuSearch').value = '';
   document.querySelectorAll('.filter-group input[type=checkbox]').forEach(cb => cb.checked = false);
   if (document.getElementById('favFilter')) document.getElementById('favFilter').checked = false;
-  document.getElementById('priceRange').value = 30;
+  document.getElementById('priceRange').value = 1500;
   updatePriceLabel();
   document.querySelector('input[name=rating][value="0"]').checked = true;
   document.querySelector('input[name=diet][value="all"]').checked = true;
