@@ -1,6 +1,6 @@
 // ── LOAD CART FROM LOCALSTORAGE ──
-const DELIVERY_FEE = 3.99;
-const FREE_DELIVERY_MIN = 25;
+const DELIVERY_FEE = 49;
+const FREE_DELIVERY_MIN = 500;
 const TAX_RATE = 0.05;
 let cart = [];
 
@@ -30,9 +30,9 @@ function renderSummary() {
       <div class="summary-item-img"><img src="${item.image || 'https://images.unsplash.com/photo-1546069901-ba9599a7e63c?w=500'}" alt="${item.name}"/></div>
       <div class="summary-item-info">
         <div class="summary-item-name">${item.name}</div>
-        <div class="summary-item-qty">${item.quantity || 1} × $${item.price.toFixed(2)}</div>
+        <div class="summary-item-qty">${item.quantity || 1} × ₹${item.price.toFixed(0)}</div>
       </div>
-      <div class="summary-item-price">$${(item.price * (item.quantity || 1)).toFixed(2)}</div>
+      <div class="summary-item-price">₹${(item.price * (item.quantity || 1)).toFixed(0)}</div>
     </div>
   `).join('');
 
@@ -45,15 +45,15 @@ function updateTotals() {
     const tax = subtotal * TAX_RATE;
     const total = subtotal + delivery + tax;
 
-    if (document.getElementById('subtotal')) document.getElementById('subtotal').textContent = `$${subtotal.toFixed(2)}`;
+    if (document.getElementById('subtotal')) document.getElementById('subtotal').textContent = `₹${subtotal.toFixed(0)}`;
     const feeEl = document.getElementById('deliveryFee');
     if (feeEl) {
-        feeEl.textContent = delivery === 0 ? 'FREE' : `$${delivery.toFixed(2)}`;
+        feeEl.textContent = delivery === 0 ? 'FREE' : `₹${delivery.toFixed(0)}`;
         feeEl.style.color = delivery === 0 ? '#10b981' : '';
     }
-    if (document.getElementById('taxAmt')) document.getElementById('taxAmt').textContent = `$${tax.toFixed(2)}`;
-    if (document.getElementById('totalAmount')) document.getElementById('totalAmount').textContent = `$${total.toFixed(2)}`;
-    if (document.getElementById('btnTotal')) document.getElementById('btnTotal').textContent = `$${total.toFixed(2)}`;
+    if (document.getElementById('taxAmt')) document.getElementById('taxAmt').textContent = `₹${tax.toFixed(0)}`;
+    if (document.getElementById('totalAmount')) document.getElementById('totalAmount').textContent = `₹${total.toFixed(0)}`;
+    if (document.getElementById('btnTotal')) document.getElementById('btnTotal').textContent = `₹${total.toFixed(0)}`;
 }
 
 // ── PAYMENT METHOD ──

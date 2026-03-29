@@ -1187,7 +1187,7 @@
             <li><a href="#hero">Home</a></li>
             <li><a href="#categories">Cuisines</a></li>
             <li><a href="menu.html">Menu</a></li>
-            <li><a href="#how">How It Works</a></li>
+            <li><a href="wishlist.html">Wishlist</a></li>
             <li><a href="#reviews">Reviews</a></li>
         </ul>
         <div class="nav-cta">
@@ -1550,10 +1550,10 @@
                 <p>Sabroso – Global Cloud Kitchen connects food lovers with passionate home chefs across the world.
                     Authentic flavours, delivered with love.</p>
                 <div class="social-icons">
-                    <a class="social-icon" href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
-                    <a class="social-icon" href="#" aria-label="Twitter"><i class="fab fa-x-twitter"></i></a>
+                    <a class="social-icon" href="https://instagram.com/__blessy__.11" target="_blank" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                    <a class="social-icon" href="https://wa.me/919381148438" target="_blank" aria-label="WhatsApp"><i class="fab fa-whatsapp"></i></a>
                     <a class="social-icon" href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
-                    <a class="social-icon" href="#" aria-label="TikTok"><i class="fab fa-tiktok"></i></a>
+                    <a class="social-icon" href="#" aria-label="Twitter"><i class="fab fa-x-twitter"></i></a>
                     <a class="social-icon" href="#" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
                 </div>
             </div>
@@ -1561,22 +1561,21 @@
             <div class="footer-col">
                 <h4>Company</h4>
                 <ul>
-                    <li><a href="#">About Sabroso</a></li>
-                    <li><a href="#">Our Story</a></li>
-                    <li><a href="#">Home Chefs</a></li>
-                    <li><a href="#">Careers</a></li>
-                    <li><a href="#">Press</a></li>
+                    <li><a href="index.html">About Sabroso</a></li>
+                    <li><a href="menu.html">Our Menu</a></li>
+                    <li><a href="mailto:blessybloommail0511@gmail.com?subject=Career Inquiry">Careers</a></li>
+                    <li><a href="mailto:blessybloommail0511@gmail.com?subject=Press Inquiry">Press</a></li>
                 </ul>
             </div>
 
             <div class="footer-col">
                 <h4>Contact</h4>
                 <ul>
-                    <li><a href="mailto:hello@sabroso.com">hello@sabroso.com</a></li>
-                    <li><a href="tel:+18001234567">+1 800 123 4567</a></li>
-                    <li><a href="#">Help Centre</a></li>
-                    <li><a href="#">Live Chat</a></li>
-                    <li><a href="#">Partner With Us</a></li>
+                    <li><a href="mailto:blessybloommail0511@gmail.com">blessybloommail0511@gmail.com</a></li>
+                    <li><a href="tel:+919381148438">+91 93811 48438</a></li>
+                    <li><a href="mailto:blessybloommail0511@gmail.com?subject=Help Request">Help Centre</a></li>
+                    <li><a href="javascript:void(0)" onclick="document.getElementById('chatbotToggle')?.click() || window.openChatbot?.()">Live Chat</a></li>
+                    <li><a href="mailto:blessybloommail0511@gmail.com?subject=Partnership Inquiry">Partner With Us</a></li>
                 </ul>
             </div>
 
@@ -1607,7 +1606,7 @@
             <li><a href="#hero" onclick="toggleMenu()">Home</a></li>
             <li><a href="#categories" onclick="toggleMenu()">Cuisines</a></li>
             <li><a href="menu.html">Menu</a></li>
-            <li><a href="#how" onclick="toggleMenu()">How It Works</a></li>
+            <li><a href="wishlist.html">Wishlist</a></li>
             <li><a href="#reviews" onclick="toggleMenu()">Reviews</a></li>
         </ul>
         <div class="mobile-menu-cta">
@@ -1720,7 +1719,7 @@
                                 <div class="dish-desc">${d.description}</div>
                                 <div class="dish-stars">${stars} <span>(4.${Math.floor(Math.random() * 9)}k+)</span></div>
                                 <div class="dish-footer">
-                                    <div class="dish-price">$${d.price.toFixed(2)}</div>
+                                    <div class="dish-price">₹${d.price.toFixed(0)}</div>
                                     <button class="btn-cart" onclick="addToCart(this, '${d._id}', '${d.name}')"><i class="fas fa-cart-plus"></i> Add</button>
                                 </div>
                             </div>

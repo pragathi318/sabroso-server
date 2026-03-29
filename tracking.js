@@ -61,18 +61,18 @@ function renderOrderData() {
           <div class="order-item-img"><img src="${item.image || 'https://images.unsplash.com/photo-1546069901-ba9599a7e63c?w=500'}" alt="${item.name}"/></div>
           <div class="order-item-info">
             <div class="order-item-name">${item.name}</div>
-            <div class="order-item-qty">${item.quantity} × $${item.price.toFixed(2)}</div>
+            <div class="order-item-qty">${item.quantity} × ₹${item.price.toFixed(0)}</div>
           </div>
-          <div class="order-item-price">$${(item.price * item.quantity).toFixed(2)}</div>
+          <div class="order-item-price">₹${(item.price * item.quantity).toFixed(0)}</div>
         </div>
       `).join('');
     }
 
     // Summary
-    document.getElementById('orderSubtotal').textContent = `$${currentOrder.subtotal.toFixed(2)}`;
-    document.getElementById('orderDelivery').textContent = currentOrder.deliveryFee === 0 ? 'FREE' : `$${currentOrder.deliveryFee.toFixed(2)}`;
-    document.getElementById('orderTax').textContent = `$${currentOrder.tax.toFixed(2)}`;
-    document.getElementById('orderTotal').textContent = `$${currentOrder.total.toFixed(2)}`;
+    document.getElementById('orderSubtotal').textContent = `₹${currentOrder.subtotal.toFixed(0)}`;
+    document.getElementById('orderDelivery').textContent = currentOrder.deliveryFee === 0 ? 'FREE' : `₹${currentOrder.deliveryFee.toFixed(0)}`;
+    document.getElementById('orderTax').textContent = `₹${currentOrder.tax.toFixed(0)}`;
+    document.getElementById('orderTotal').textContent = `₹${currentOrder.total.toFixed(0)}`;
     document.getElementById('orderPayment').textContent = currentOrder.paymentMethod.toUpperCase();
 }
 

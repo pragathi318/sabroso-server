@@ -106,7 +106,7 @@ function renderDish(d) {
     <span class="review-count">(${d.reviews} reviews)</span>`;
 
     document.getElementById('infoDesc').textContent = d.desc;
-    document.getElementById('infoPrice').textContent = `$${d.price.toFixed(2)}`;
+    document.getElementById('infoPrice').textContent = `₹${d.price.toFixed(0)}`;
 
     const diet = d.tags?.includes('vegetarian') || d.tags?.includes('veg') ? 'veg' : 'non-veg';
     const dietEl = document.getElementById('infoDiet');
@@ -142,7 +142,7 @@ function changeQty(delta) {
 
 function updateTotal() {
     if (!currentDish) return;
-    document.getElementById('totalPrice').textContent = `$${(currentDish.price * currentQty).toFixed(2)}`;
+    document.getElementById('totalPrice').textContent = `₹${(currentDish.price * currentQty).toFixed(0)}`;
 }
 
 // ── CART ──
@@ -172,7 +172,7 @@ function addToCart() {
     showToast(`🛒 ${currentQty}× ${currentDish.name} added to cart!`);
     setTimeout(() => {
         btn.classList.remove('added');
-        btn.innerHTML = `<i class="fas fa-cart-plus"></i> Add to Cart — <span id="totalPrice">$${(currentDish.price * currentQty).toFixed(2)}</span>`;
+        btn.innerHTML = `<i class="fas fa-cart-plus"></i> Add to Cart — <span id="totalPrice">₹${(currentDish.price * currentQty).toFixed(0)}</span>`;
     }, 2500);
 }
 
@@ -231,7 +231,7 @@ function renderRelated(d) {
         <div class="related-country">${r.country || r.cuisine}</div>
         <div class="related-name">${r.name}</div>
         <div class="related-footer">
-          <span class="related-price">$${r.price.toFixed(2)}</span>
+          <span class="related-price">₹${r.price.toFixed(0)}</span>
           <span class="related-rating">★ ${r.rating || '4.5'} <span>(4k+)</span></span>
         </div>
       </div>

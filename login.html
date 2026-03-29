@@ -79,7 +79,7 @@
                         <div class="form-extras">
                             <label class="remember"><input type="checkbox" checked /><span class="checkmark-sm"></span>
                                 Remember me</label>
-                            <a href="#" class="forgot">Forgot Password?</a>
+                            <a href="javascript:void(0)" onclick="showToast('📧 Password reset link sent to your email!')" class="forgot">Forgot Password?</a>
                         </div>
                         <button type="submit" class="btn-submit" id="loginBtn"><i class="fas fa-sign-in-alt"></i> Sign
                             In</button>
@@ -145,8 +145,8 @@
                             <span class="pw-label" id="pwLabel"></span>
                         </div>
                         <label class="terms"><input type="checkbox" id="termsCheck" required /><span
-                                class="checkmark-sm"></span> I agree to the <a href="#">Terms</a> and <a
-                                href="#">Privacy Policy</a></label>
+                                class="checkmark-sm"></span> I agree to the <a href="terms.html" target="_blank">Terms</a> and <a
+                                href="privacy.html" target="_blank">Privacy Policy</a></label>
                         <button type="submit" class="btn-submit" id="registerBtn"><i class="fas fa-user-plus"></i>
                             Create Account</button>
                     </form>

@@ -130,6 +130,30 @@ nav {
     color: var(--brown);
 }
 
+.mobile-cart-btn {
+    display: none;
+    position: relative;
+    color: var(--brown);
+    font-size: 1.3rem;
+    text-decoration: none;
+}
+
+.mobile-cart-btn .mCartCount {
+    position: absolute;
+    top: -8px;
+    right: -10px;
+    background: var(--red);
+    color: #fff;
+    font-size: 0.65rem;
+    font-weight: 700;
+    width: 18px;
+    height: 18px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
 /* ── MENU HERO ── */
 #menu-hero {
     position: relative;
@@ -734,75 +758,20 @@ nav {
     margin-bottom: 1.5rem;
 }
 
-/* ── DETAIL MODAL ── */
-.modal-overlay {
-    position: fixed;
-    inset: 0;
-    background: rgba(0, 0, 0, 0.6);
-    backdrop-filter: blur(6px);
-    z-index: 9998;
-    display: none;
-    align-items: center;
-    justify-content: center;
-    padding: 2rem;
+.loading-spinner {
+    text-align: center;
+    padding: 3rem;
+    color: var(--gray);
 }
 
-.modal-overlay.active {
-    display: flex;
+.loading-spinner i {
+    color: var(--red);
 }
 
-.modal-card {
-    background: var(--white);
-    border-radius: var(--radius);
-    max-width: 520px;
-    width: 100%;
-    overflow: hidden;
-    box-shadow: var(--shadow-lg);
-    animation: modalIn 0.3s ease;
-}
-
-@keyframes modalIn {
-    from {
-        opacity: 0;
-        transform: scale(0.92);
-    }
-
-    to {
-        opacity: 1;
-        transform: scale(1);
-    }
-}
-
-.modal-img {
-    width: 100%;
-    height: 260px;
-    object-fit: cover;
-}
-
-.modal-body {
-    padding: 1.5rem;
-}
-
-.modal-close {
-    position: absolute;
-    top: 1rem;
-    right: 1rem;
-    width: 36px;
-    height: 36px;
-    background: rgba(255, 255, 255, 0.9);
-    border: none;
-    border-radius: 50%;
-    font-size: 1.1rem;
-    cursor: pointer;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: var(--brown);
-    transition: transform 0.2s;
-}
-
-.modal-close:hover {
-    transform: scale(1.1);
+.error-msg {
+    text-align: center;
+    padding: 3rem;
+    color: #ef4444;
 }
 
 /* ── TOAST ── */
@@ -1042,7 +1011,8 @@ footer {
         display: none;
     }
 
-    .hamburger {
+    .hamburger,
+    .mobile-cart-btn {
         display: block;
     }
 
